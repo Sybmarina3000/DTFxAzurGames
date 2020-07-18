@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -59,7 +58,11 @@ namespace DefaultNamespace
             _conusRectTransform.position = Camera.main.WorldToScreenPoint(from);
 
             var vectorDirection = to - from;
-            var angle = Vector3.Angle(Vector3.up, vectorDirection) - (0.5f * _radius);
+            int znak = 1;
+            if (to.x < from.x)
+                znak = -1;
+            
+            var angle = (Vector3.Angle(Vector3.up, vectorDirection) - (0.5f * _radius * znak)) * znak;
             
             _conusRectTransform.rotation = Quaternion.identity;
             _conusRectTransform.Rotate(Vector3.back, angle);
@@ -75,7 +78,7 @@ namespace DefaultNamespace
             var direction = finishPoint - startPoint;
             
             Debug.Log(" direction: " + direction.normalized);
-            return direction;
+            return direction.normalized;
         }
         
         IEnumerator StartArrowLocation()
