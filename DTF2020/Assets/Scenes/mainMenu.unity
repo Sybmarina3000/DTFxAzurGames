@@ -148,7 +148,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 30483394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f3c7a50beec8684190f9d0c9c219e52, type: 3}
+  m_Script: {fileID: 11500000, guid: 346e72bd20fbf9c47a8cd8037bd11db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &30483396
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 30483394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1291a32f889fd4a875d1e77c7a877e, type: 3}
+  m_Script: {fileID: 11500000, guid: 88cb706394f814f458b2be9e1f325be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &30483397
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1430188619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83849433d8bfb73438c7d3a9e31e5d03, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ed157b2602301143b46507dc79a2408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -475,7 +475,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
