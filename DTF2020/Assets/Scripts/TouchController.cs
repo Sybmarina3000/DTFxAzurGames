@@ -31,7 +31,7 @@ namespace DefaultNamespace
 
                 _touchFlag = false;
                 _directionConus.Hide();
-                var direction = _directionConus.currentDirection;
+                _directionConus.GetDirection();
             }
         }
     }

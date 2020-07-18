@@ -18,6 +18,8 @@ namespace DefaultNamespace
 
         [SerializeField] private RectTransform _arrow;
 
+        [SerializeField] private RectTransform _arrowFinishPoint;
+
         [SerializeField] private Vector3 _currentVector;
 
         private Image _conusImage;
@@ -51,7 +53,7 @@ namespace DefaultNamespace
             _canvasGroup.alpha = 0;
         }
         
-        void Spawn(Vector3 from, Vector3 to)
+        public void Spawn(Vector3 from, Vector3 to)
         {
             _canvasGroup.alpha = 1;
             _conusRectTransform.position = Camera.main.WorldToScreenPoint(from);
@@ -65,9 +67,15 @@ namespace DefaultNamespace
             StartCoroutine(nameof(StartArrowLocation));
         }
 
-        void Apply()
+        public Vector3 GetDirection()
         {
+            var startPoint = _conusRectTransform.position;
+            var finishPoint = _arrowFinishPoint.position;
+
+            var direction = finishPoint - startPoint;
             
+            Debug.Log(" direction: " + direction.normalized);
+            return direction;
         }
         
         IEnumerator StartArrowLocation()
