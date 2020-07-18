@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
+    [RequireComponent(typeof(CanvasGroup))]
     [RequireComponent(typeof(Image))]
     public class DirectionConus : UnityEngine.MonoBehaviour
     {
         
-        Vector3 currentDirection => _currentVector;
+        public Vector3 currentDirection => _currentVector;
         
         [SerializeField] int _radius;
         
@@ -20,6 +21,8 @@ namespace DefaultNamespace
         [SerializeField] private Vector3 _currentVector;
 
         private Image _conusImage;
+
+        private CanvasGroup _canvasGroup;
 
         private RectTransform _conusRectTransform;
         
@@ -32,6 +35,7 @@ namespace DefaultNamespace
         {
             _conusImage = GetComponent<Image>();
             _conusRectTransform = GetComponent<RectTransform>();
+            _canvasGroup = GetComponent<CanvasGroup>();
             
             _conusImage.fillAmount = ((float)_radius) / 360;
         }
@@ -39,11 +43,17 @@ namespace DefaultNamespace
         public void TestSpawn()
         {
             Spawn(_from.position, _to.position);
-        } 
+        }
+
+        public void Hide()
+        {
+            StopCoroutine(nameof(StartArrowLocation));
+            _canvasGroup.alpha = 0;
+        }
         
         void Spawn(Vector3 from, Vector3 to)
         {
-
+            _canvasGroup.alpha = 1;
             _conusRectTransform.position = Camera.main.WorldToScreenPoint(from);
 
             var vectorDirection = to - from;
@@ -52,7 +62,7 @@ namespace DefaultNamespace
             _conusRectTransform.rotation = Quaternion.identity;
             _conusRectTransform.Rotate(Vector3.back, angle);
             
-            StartCoroutine(StartArrowLocation());
+            StartCoroutine(nameof(StartArrowLocation));
         }
 
         void Apply()

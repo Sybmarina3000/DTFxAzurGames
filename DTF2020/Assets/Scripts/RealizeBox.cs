@@ -1,0 +1,11 @@
+﻿using UnityEngine;
+
+namespace DefaultNamespace
+{
+    public class RealizeBox : MonoBehaviourSingleton<RealizeBox>
+    {
+        public DirectionConus directionConus => _directionConus;
+        
+        [SerializeField] private DirectionConus _directionConus;
+    }
+}
