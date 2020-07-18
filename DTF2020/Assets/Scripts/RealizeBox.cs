@@ -7,5 +7,9 @@ namespace DefaultNamespace
         public DirectionConus directionConus => _directionConus;
         
         [SerializeField] private DirectionConus _directionConus;
+
+        public playerController player => _player;
+
+        [SerializeField] private playerController _player;
     }
 }

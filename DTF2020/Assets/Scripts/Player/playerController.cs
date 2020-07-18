@@ -7,7 +7,7 @@ public class playerController : MonoBehaviour, actionObject
 {
     public UnityEngine.UI.Text debugText;
     public bool slowMode = false;
-    float force = 300.0f;
+    float force = 600.0f;
     Rigidbody2D moveController = null;
     // Start is called before the first frame update
     void Start()
@@ -75,5 +75,21 @@ public class playerController : MonoBehaviour, actionObject
     public void destroyActionObject()
     {
         actionController.remove(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        actionController.addMoveToFromPosAndSpeed(gameObject,
+            new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
+            new Vector2(gameObject.transform.position.x + 9999.0f, gameObject.transform.position.y),
+            typeMove.LINARY,
+            3,
+            5,
+            typeSpeed.CUBIC);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        actionController.clearActions(gameObject);
     }
 }
