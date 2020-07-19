@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class levelConroller : MonoBehaviour
 {
-    public string file;
-    public bool save = false;
-    public bool load = false;
     EdgeCollider2D map;
     public GameObject objectPoint = null;
     List<GameObject> objectPoints = new List<GameObject>();
@@ -54,30 +51,6 @@ public class levelConroller : MonoBehaviour
                 var clone = Instantiate(objectPoint);
                 clone.transform.position = pointCopy;
                 objectPoints.Add(clone);
-            }
-        }
-        if (file.Length > 0)
-        {
-            if (save && !load)
-            {
-                Vector2[] pointData = new Vector2[points.Count];
-                laserData[] laserData = new laserData[lasers.Count];
-                for (int n = 0; n < points.Count; n++)
-                {
-                    var point = points[n];
-                    pointData[n] = point;
-                }
-                for (int n = 0; n < lasers.Count; n++)
-                {
-                    var data = lasers[n];
-                    laserData[n] = data;
-                }
-                utilFunction.saveArrayData(pointData, file + "Points");
-                utilFunction.saveArrayData(laserData, file + "Lasers");
-            }
-            if (load && !save)
-            { 
-            
             }
         }
     }
