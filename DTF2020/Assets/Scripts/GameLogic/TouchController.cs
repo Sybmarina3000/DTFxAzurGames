@@ -22,6 +22,7 @@ namespace DefaultNamespace
 
         private void Update()
         {
+            
             if (Input.GetMouseButtonDown(0))
             {
                 isTouch = true;
@@ -36,7 +37,11 @@ namespace DefaultNamespace
                     return;
                 
                 _touchFlag = true;
-                _directionConus.Spawn(_player.gameObject.transform.position, new Vector3(500, 100));
+
+                var point = RealizeBox.instance.level.getCurrentPoint();
+                _directionConus.Spawn(_player.gameObject.transform.position, point.transform.position);
+                RealizeBox.instance.player.setSlowMode(true);
+               
             }
             else
             {
@@ -46,6 +51,7 @@ namespace DefaultNamespace
                 _touchFlag = false;
                 _directionConus.Hide();
                 _player.jump(_directionConus.GetDirection());
+                RealizeBox.instance.player.setSlowMode(false);
             }
         }
     }
