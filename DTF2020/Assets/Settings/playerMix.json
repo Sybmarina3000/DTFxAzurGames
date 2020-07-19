@@ -1,0 +1,14 @@
+{
+    "Items": [
+        {
+            "animFrom": "idle",
+            "animTo": "flash",
+            "time": 0.1
+        },
+        {
+            "animFrom": "flash",
+            "animTo": "idle",
+            "time": 0.1
+        }                
+    ]
+}

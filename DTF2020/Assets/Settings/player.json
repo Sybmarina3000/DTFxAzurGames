@@ -1,0 +1,21 @@
+{
+    "Items": [
+        {
+            "animName": "idle",
+            "animSpeed": 1.0
+        },
+        {
+            "animName": "flash",
+            "animSpeed": 1.0
+        },
+        {
+            "animName": "",
+            "animSpeed": 1.0
+        },
+        {
+            "animName": "",
+            "animSpeed": 1.0
+			
+        }
+    ]
+}

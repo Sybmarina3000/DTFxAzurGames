@@ -7,9 +7,13 @@ public class playerController : MonoBehaviour, actionObject
     public event Action onSpawnInScene;
     
     public UnityEngine.UI.Text debugText;
-    public bool slowMode = false;
+    bool slowMode = false;
     float force = 600.0f;
     Rigidbody2D moveController = null;
+    public GameObject spineObject;
+    animController animModule;
+    public string dirConfigAnim;
+    public string dirConfigAnimMix;
 
     private bool _isFirstCollision = true; // with floor, after spawn;
     
@@ -17,8 +21,11 @@ public class playerController : MonoBehaviour, actionObject
     void Start()
     {
         initActionObject();
-        colliderFactory.getCollideFromParameters("box", new List<float> { 0, 0,4f,2.5f }, false, gameObject);
+        colliderFactory.getCollideFromParameters("box", new List<float> { 0, 0,4f,4f }, false, gameObject);
         moveController = GetComponent<Rigidbody2D>();
+        animModule = new animController();
+        animModule.init(spineObject, dirConfigAnim, dirConfigAnimMix);
+        animModule.setIdle();
     }
 
     ~playerController()
@@ -29,6 +36,7 @@ public class playerController : MonoBehaviour, actionObject
     // Update is called once per frame
     void Update()
     {
+        animModule.customUpdate();
         if (Input.GetKeyDown(KeyCode.F3))
         {
             slowMode = !slowMode;
@@ -39,7 +47,7 @@ public class playerController : MonoBehaviour, actionObject
         }
         if (slowMode)
         {
-            float slowSpeed = 0.01f;
+            float slowSpeed = 0.25f;
             if (Time.timeScale > slowSpeed)
             {
                 Time.timeScale -= Time.deltaTime * 4;
@@ -69,6 +77,7 @@ public class playerController : MonoBehaviour, actionObject
     {
         moveController.velocity = new Vector2(0, 0);
         moveController.AddForce(new Vector2 (direction.x * force, direction.y * force));
+        animModule.setMove();
     }
 
     public void initActionObject()
@@ -88,6 +97,7 @@ public class playerController : MonoBehaviour, actionObject
             _isFirstCollision = false;
             onSpawnInScene?.Invoke();
         }
+        animModule.setIdle();
         // надо добавить задержку, чтобы он стартовал не сразу
         // TODO непонятно надо ли его двигать. вопрос к ГД. пока так не делаем
         /*actionController.addMoveToFromPosAndSpeed(gameObject,
