@@ -16,7 +16,10 @@ namespace DefaultNamespace
         {
             base.Enter(last);
             //TODO Start Lose Animation, Show defeat window;
-            _mainGameUi.ShowDefeatWindow();
+            
+            _mainGameUi.HideGameUi();
+            RealizeBox.instance.loseGameAnimation.StartLose();
+           // _mainGameUi.ShowDefeatWindow();
         }
 
         public override void Exit(GameState last)
