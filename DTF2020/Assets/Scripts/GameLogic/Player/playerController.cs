@@ -39,7 +39,7 @@ public class playerController : MonoBehaviour, actionObject
         }
         if (slowMode)
         {
-            float slowSpeed = 0.25f;
+            float slowSpeed = 0.01f;
             if (Time.timeScale > slowSpeed)
             {
                 Time.timeScale -= Time.deltaTime * 4;
@@ -67,7 +67,7 @@ public class playerController : MonoBehaviour, actionObject
 
     public void jump(Vector2 direction)
     {
-        moveController.velocity = new Vector2(moveController.velocity.x, 0);
+        moveController.velocity = new Vector2(0, 0);
         moveController.AddForce(new Vector2 (direction.x * force, direction.y * force));
     }
 
