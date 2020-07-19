@@ -32,8 +32,12 @@ public class actionController : MonoBehaviour
 
     static public void init(GameObject aHead, List<GameObject> aModels)
     {
-        keyToAction[aHead] = new List<actionHead>();
-        keyToModels[aHead] = aModels;
+        List<actionHead> outt;
+        if (!keyToAction.TryGetValue(aHead, out outt))
+        { 
+            keyToAction[aHead] = new List<actionHead>();
+            keyToModels[aHead] = aModels;
+        }
     }
 
     static public void remove(GameObject aHead)
@@ -118,12 +122,14 @@ public class actionController : MonoBehaviour
         keyToAction[aHead].Add(new actionHead(aHead, actionProgress, action, aCallback));
     }
 
-    static public void addDelay(GameObject aHead, float time, callback aCallback = null)
+    static public actionHead addDelay(GameObject aHead, float time, callback aCallback = null)
     {
-        if (!isValidTarget(aHead)) { return; }
+        if (!isValidTarget(aHead)) { return null; }
         var actionProgress = new actionTime(time);
         var action = new actionDelay();
-        keyToAction[aHead].Add(new actionHead(aHead, actionProgress, action, aCallback));
+        var actionHead = new actionHead(aHead, actionProgress, action, aCallback);
+        keyToAction[aHead].Add(actionHead);
+        return actionHead;
     }
 
     static public void addChangeAlpha(GameObject aHead, float startAlpha, float endAlpha, float time, callback aCallback = null)

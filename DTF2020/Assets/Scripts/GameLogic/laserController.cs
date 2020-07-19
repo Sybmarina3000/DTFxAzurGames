@@ -7,7 +7,7 @@ public class laserController : MonoBehaviour, actionObject
     public string dirAnimConfig;
     public string dirAnimMixConfig;
     animController controller;
-
+    actionHead action = default;
     void Start()
     {
         controller = new animController();
@@ -16,10 +16,10 @@ public class laserController : MonoBehaviour, actionObject
         initActionObject();
     }
 
-    ~laserController() 
-    {
-        destroyActionObject();
-    }
+    //~laserController() 
+    //{
+    //    destroyActionObject();
+    //}
 
     // Update is called once per frame
     void Update()
@@ -32,8 +32,11 @@ public class laserController : MonoBehaviour, actionObject
         if (controller.isIdle())
         {
             controller.setDamage();
-            actionController.clearActions(gameObject);
-            actionController.addDelay(gameObject, 1, new callback(new callbackFunc(controller.setIdle)));
+            if (action != default)
+            {
+                action.end();
+            }
+            action = actionController.addDelay(gameObject, 1, new callback(new callbackFunc(controller.setIdle)));
         }
     }
 

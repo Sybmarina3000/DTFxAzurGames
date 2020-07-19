@@ -28,10 +28,10 @@ public class playerController : MonoBehaviour, actionObject
         animModule.setIdle();
     }
 
-    ~playerController()
-    {
-        destroyActionObject();
-    }
+    //~playerController()
+    //{
+    //    destroyActionObject();
+    //}
 
     // Update is called once per frame
     void Update()
@@ -47,7 +47,7 @@ public class playerController : MonoBehaviour, actionObject
         }
         if (slowMode)
         {
-            float slowSpeed = 0.1f;
+            float slowSpeed = 0.05f;
             if (Time.timeScale > slowSpeed)
             {
                 Time.timeScale -= Time.fixedDeltaTime * 10;
@@ -57,29 +57,35 @@ public class playerController : MonoBehaviour, actionObject
             {
                 Time.timeScale = slowSpeed;
             }
-            Time.fixedDeltaTime = Time.fixedDeltaTime = Time.timeScale * .02f;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
             debugText.text = Time.timeScale.ToString();
         }
         else
         {
-            float normalSpeed = 1.0f;
-            if (Time.timeScale < normalSpeed)
-            {
-                Time.timeScale += Time.fixedDeltaTime * 20;
-            }
-            else
-            {
-                Time.timeScale = normalSpeed;
-            }
-            Time.fixedDeltaTime = Time.fixedDeltaTime = Time.timeScale * .02f;
-            debugText.text = Time.timeScale.ToString();
+            setNormalTime();
         }
     }
 
-    public void jump(Vector2 direction)
+    void setNormalTime()
     {
+        float normalSpeed = 1.0f;
+        Time.timeScale = normalSpeed;
+        Time.fixedDeltaTime = Time.timeScale * .02f;
+        debugText.text = Time.timeScale.ToString();
+    }
+
+    public void jump(Vector2 direction, bool ground = false)
+    {
+        setNormalTime();
         moveController.velocity = new Vector2(0, 0);
-        moveController.AddForce(new Vector2 (direction.x * force, direction.y * force));
+        if (ground)
+        {
+            moveController.AddForce(new Vector2(direction.x * force * 0.6f, direction.y * force * 0.6f));
+        }
+        else
+        { 
+            moveController.AddForce(new Vector2 (direction.x * force, direction.y * force));
+        }
         animModule.setMove();
     }
 
@@ -98,7 +104,7 @@ public class playerController : MonoBehaviour, actionObject
         if (collision.gameObject.tag == "floor")
         {
             actionController.clearActions(gameObject);
-            DefaultNamespace.RealizeBox.instance.touchController.startJump();
+            DefaultNamespace.RealizeBox.instance.touchController.startJump(true);
             slowMode = false;
         }
         if (_isFirstCollision)
@@ -118,22 +124,22 @@ public class playerController : MonoBehaviour, actionObject
             typeSpeed.CUBIC);*/
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public void nextStepSlowMode()
     {
         actionController.clearActions(gameObject);
+        setNormalTime();
+        actionController.addDelay(gameObject, 2.0f, new callback(new callbackFunc(startSlowMode)));
+        Debug.Log("jumpNext");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void startSlowMode()
     {
-        if (collision.tag == "point" && !slowMode)
-        {
-            actionController.clearActions(gameObject);
-            slowMode = true;
-            DefaultNamespace.RealizeBox.instance.touchController.startJump();
-            var secondCallback = new callback<bool>(new callbackFunc<bool>(setSlowMode), false);
-            var firstCallback = new callback(new callbackFunc(DefaultNamespace.RealizeBox.instance.touchController.endJump), secondCallback);
-            actionController.addDelay(gameObject, 3.5f, firstCallback);
-        }
+        actionController.clearActions(gameObject);
+        slowMode = true;
+        DefaultNamespace.RealizeBox.instance.touchController.startJump();
+        var secondCallback = new callback<bool>(new callbackFunc<bool>(setSlowMode), false);
+        var firstCallback = new callback(new callbackFunc(DefaultNamespace.RealizeBox.instance.touchController.endJump), secondCallback);
+        actionController.addDelay(gameObject, 13.5f, firstCallback);
     }
 
     //private void OnTriggerExit2D(Collider2D collision)

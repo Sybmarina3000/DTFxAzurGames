@@ -9,9 +9,8 @@ namespace DefaultNamespace
         private DirectionConus _directionConus;
         private playerController _player;
 
-        bool isTouch = false;
         bool jump = false;
-
+        bool ground = false;
         private void Start()
         {
             _directionConus = RealizeBox.instance.directionConus;
@@ -20,10 +19,18 @@ namespace DefaultNamespace
             enabled = false;
         }
 
-        public void startJump()
+        public void startJump(bool aground = false)
         {
+            ground = aground;
             var point = RealizeBox.instance.level.getCurrentPoint();
-            _directionConus.Spawn(_player.gameObject.transform.position, point.transform.position);
+            if (!ground)
+            {
+                _directionConus.Spawn(_player.gameObject.transform.position, new Vector2(_player.gameObject.transform.position.x + 1, _player.gameObject.transform.position.y));
+            }
+            else
+            {
+                _directionConus.Hide();
+            }
             jump = true;
         }
 
@@ -42,8 +49,17 @@ namespace DefaultNamespace
             if (Input.touchCount == 1 || Input.GetMouseButtonDown(0))
             {
                 _directionConus.Hide();
-                _player.jump(_directionConus.GetDirection());
+                if (ground)
+                {
+                    _player.jump(new Vector2(0, 1), ground);
+                    ground = false;
+                }
+                else
+                { 
+                    _player.jump(_directionConus.GetDirection());
+                }
                 RealizeBox.instance.player.setSlowMode(false);
+                RealizeBox.instance.player.nextStepSlowMode();
                 jump = false;
             }
         }
