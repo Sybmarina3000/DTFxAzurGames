@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -120,7 +119,7 @@ namespace DefaultNamespace
                         gran = currentAngle * (-1);
                 }
                 
-                var angle = gran + (_radius / _timeOneRound) * Time.deltaTime * direction;
+                var angle = gran + (_radius / _timeOneRound) * Time.fixedDeltaTime * direction;
                 _arrow.Rotate( Vector3.back, angle);
                 
                 currentAngle += angle;
