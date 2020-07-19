@@ -16,6 +16,8 @@ namespace DefaultNamespace
         {
             _directionConus = RealizeBox.instance.directionConus;
             _player = RealizeBox.instance.player;
+            
+            enabled = false;
         }
 
         private void Update()

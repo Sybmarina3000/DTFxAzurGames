@@ -8,15 +8,14 @@ namespace DefaultNamespace.UI
         
         private void Start()
         {
-            RealizeBox.instance.player.onSpawnInScene += ShowGameUi;
         }
 
-        private void ShowGameUi()
+        public void ShowGameUi()
         {
             _gameUi.SetActive(true);
         }
         
-        private void HideGameUi()
+        public void HideGameUi()
         {
             _gameUi.SetActive(false);
         }

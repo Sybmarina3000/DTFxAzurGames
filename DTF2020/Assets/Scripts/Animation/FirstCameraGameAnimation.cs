@@ -18,10 +18,14 @@ namespace DefaultNamespace
         private void Start()
         {
             _player = RealizeBox.instance.player;
-            _firstPoint.SetActive(true);
-            StartCoroutine("Animation");
         }
 
+        public void StartAnimation()
+        {
+            // _firstPoint.SetActive(true);
+            StartCoroutine("Animation");
+        }
+        
         private IEnumerator Animation()
         {
             yield return new WaitForSeconds(_firstPauseTime);
@@ -33,6 +37,7 @@ namespace DefaultNamespace
             yield return new WaitForSeconds(_returnTime);
             _player.gameObject.SetActive(true);
             yield break;
+            
         }
     }
 }
