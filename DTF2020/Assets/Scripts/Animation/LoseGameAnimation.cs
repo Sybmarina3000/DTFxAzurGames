@@ -29,7 +29,7 @@ namespace DefaultNamespace
 
             _maskAnimation = DOTween.Sequence().SetAutoKill(false).Pause();
 
-            _maskAnimation.Append(_mask.DOScale(6, _timeFirstMaskScale))
+            _maskAnimation.Append(_mask.DOScale(0.5f, _timeFirstMaskScale))
                 .AppendInterval(_timeWait)
                 .Append(_mask.DOScale(0, _timeSecondMaskScale))
                 .OnComplete(() => SceneManager.LoadScene(_sceneName) );
