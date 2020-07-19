@@ -4,21 +4,32 @@ namespace DefaultNamespace.UI
 {
     public class MainGameUI : MonoBehaviour
     {
-        [SerializeField] private GameObject _gameUi;
+        [SerializeField] private CanvasGroup _gameUi;
+        [SerializeField] private GameObject _victoryUi;
+        [SerializeField] private GameObject _defeatUi;
         
         private void Start()
         {
-            RealizeBox.instance.player.onSpawnInScene += ShowGameUi;
         }
 
-        private void ShowGameUi()
+        public void ShowGameUi()
         {
-            _gameUi.SetActive(true);
+            _gameUi.alpha = 1;
         }
         
-        private void HideGameUi()
+        public void HideGameUi()
         {
-            _gameUi.SetActive(false);
+            _gameUi.alpha = 0;
+        }
+
+        public void ShowVictoryWindow()
+        {
+            _victoryUi.SetActive(true);
+        }
+        
+        public void ShowDefeatWindow()
+        {
+            _defeatUi.SetActive(true);
         }
     }
 }
