@@ -1,0 +1,13 @@
+
+laser.png
+size: 1024,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+laser_medium
+  rotate: false
+  xy: 2, 2
+  size: 645, 49
+  orig: 645, 49
+  offset: 0, 0
+  index: -1

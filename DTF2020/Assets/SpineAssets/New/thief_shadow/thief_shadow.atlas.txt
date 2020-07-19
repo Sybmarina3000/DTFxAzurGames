@@ -1,0 +1,153 @@
+
+thief_shadow.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1_body
+  rotate: false
+  xy: 346, 277
+  size: 152, 232
+  orig: 152, 232
+  offset: 0, 0
+  index: -1
+1_brow_1
+  rotate: true
+  xy: 362, 2
+  size: 23, 15
+  orig: 23, 15
+  offset: 0, 0
+  index: -1
+1_brow_2
+  rotate: true
+  xy: 362, 2
+  size: 23, 15
+  orig: 23, 15
+  offset: 0, 0
+  index: -1
+1_eyes_idle
+  rotate: false
+  xy: 284, 5
+  size: 41, 20
+  orig: 41, 20
+  offset: 0, 0
+  index: -1
+1_left_leg
+  rotate: false
+  xy: 585, 359
+  size: 83, 150
+  orig: 83, 150
+  offset: 0, 0
+  index: -1
+1_right_leg
+  rotate: false
+  xy: 498, 122
+  size: 83, 153
+  orig: 83, 153
+  offset: 0, 0
+  index: -1
+2_eyes_fear
+  rotate: false
+  xy: 379, 5
+  size: 43, 28
+  orig: 43, 28
+  offset: 0, 0
+  index: -1
+diamond (1)
+  rotate: false
+  xy: 427, 2
+  size: 176, 105
+  orig: 176, 105
+  offset: 0, 0
+  index: -1
+f0
+  rotate: true
+  xy: 209, 11
+  size: 51, 73
+  orig: 51, 73
+  offset: 0, 0
+  index: -1
+f1
+  rotate: true
+  xy: 346, 65
+  size: 42, 35
+  orig: 42, 35
+  offset: 0, 0
+  index: -1
+f2
+  rotate: false
+  xy: 327, 6
+  size: 33, 19
+  orig: 33, 19
+  offset: 0, 0
+  index: -1
+f3
+  rotate: false
+  xy: 583, 219
+  size: 66, 68
+  orig: 66, 68
+  offset: 0, 0
+  index: -1
+f4
+  rotate: true
+  xy: 619, 304
+  size: 53, 47
+  orig: 53, 47
+  offset: 0, 0
+  index: -1
+f5
+  rotate: false
+  xy: 377, 35
+  size: 48, 28
+  orig: 48, 28
+  offset: 0, 0
+  index: -1
+flash_blur
+  rotate: true
+  xy: 2, 64
+  size: 445, 342
+  orig: 445, 342
+  offset: 0, 0
+  index: -1
+left_hand
+  rotate: false
+  xy: 500, 289
+  size: 117, 65
+  orig: 117, 65
+  offset: 0, 0
+  index: -1
+left_hand2
+  rotate: true
+  xy: 110, 3
+  size: 59, 97
+  orig: 59, 97
+  offset: 0, 0
+  index: -1
+left_leg_rever
+  rotate: true
+  xy: 346, 109
+  size: 166, 150
+  orig: 166, 150
+  offset: 0, 0
+  index: -1
+right_arm
+  rotate: false
+  xy: 284, 27
+  size: 91, 35
+  orig: 91, 35
+  offset: 0, 0
+  index: -1
+right_hand2
+  rotate: true
+  xy: 2, 6
+  size: 56, 106
+  orig: 56, 106
+  offset: 0, 0
+  index: -1
+right_leg_rever
+  rotate: false
+  xy: 500, 356
+  size: 83, 153
+  orig: 83, 153
+  offset: 0, 0
+  index: -1

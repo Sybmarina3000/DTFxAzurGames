@@ -1,0 +1,20 @@
+
+siren.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blue
+  rotate: false
+  xy: 407, 2
+  size: 403, 227
+  orig: 403, 227
+  offset: 0, 0
+  index: -1
+red
+  rotate: false
+  xy: 2, 2
+  size: 403, 227
+  orig: 403, 227
+  offset: 0, 0
+  index: -1
