@@ -107,7 +107,7 @@ MonoBehaviour:
   lightignEventCache: []
   movement:
     update: 0
-    updatePosition: {x: 5.7200003, y: -2.86, z: 0}
+    updatePosition: {x: 5.0973644, y: -2.86, z: 0}
     updateColor: {r: 0.9058824, g: 0.27058825, b: 0.38431376, a: 1}
     updateRotation: 0
     updateSize: 5
@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 1662169941457025659}
   - component: {fileID: 121828053808340794}
   - component: {fileID: 482121209237194407}
+  - component: {fileID: 285175515091468651}
   m_Layer: 0
   m_Name: Spine GameObject (laser)
   m_TagString: Untagged
@@ -148,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 1662169941457025652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.7, y: -2.61, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7938294, y: 1, z: 1}
   m_Children:
   - {fileID: 3534046320684064088}
   m_Father: {fileID: 0}
@@ -277,3 +278,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.4500003, y: 0.49}
   m_EdgeRadius: 0
+--- !u!114 &285175515091468651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662169941457025652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5f2796357f427a9d6730bbc16c2ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
