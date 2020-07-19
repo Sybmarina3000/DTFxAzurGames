@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,10 @@ namespace DefaultNamespace
         private CanvasGroup _canvasGroup;
 
         private RectTransform _conusRectTransform;
+
+        private Transform _playerRect;
+
+        private bool _flagSpawn = false;
         
         [SerializeField] private Transform _from;
         
@@ -41,6 +46,11 @@ namespace DefaultNamespace
             _conusImage.fillAmount = ((float)_radius) / 360;
         }
 
+        private void Start()
+        {
+            _playerRect = RealizeBox.instance.player.gameObject.transform;
+        }
+
         public void TestSpawn()
         {
             Spawn(_from.position, _to.position);
@@ -48,12 +58,22 @@ namespace DefaultNamespace
 
         public void Hide()
         {
+            _flagSpawn = false;
             StopCoroutine(nameof(StartArrowLocation));
             _canvasGroup.alpha = 0;
         }
-        
+
+        private void Update()
+        {
+            if (!_flagSpawn)
+                return;
+            
+            _conusRectTransform.position = Camera.main.WorldToScreenPoint(_playerRect.position);
+        }
+
         public void Spawn(Vector3 from, Vector3 to)
         {
+            _flagSpawn = true;
             _canvasGroup.alpha = 1;
             _conusRectTransform.position = Camera.main.WorldToScreenPoint(from);
 

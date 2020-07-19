@@ -107,7 +107,7 @@ MonoBehaviour:
   lightignEventCache: []
   movement:
     update: 0
-    updatePosition: {x: 5.0973644, y: -2.86, z: 0}
+    updatePosition: {x: 4.987365, y: -3.06, z: 0}
     updateColor: {r: 0.9058824, g: 0.27058825, b: 0.38431376, a: 1}
     updateRotation: 0
     updateSize: 5
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 482121209237194407}
   - component: {fileID: 285175515091468651}
   m_Layer: 0
-  m_Name: Spine GameObject (laser)
+  m_Name: Spine GameObject (laser midle)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662169941457025652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7, y: -2.61, z: 0}
+  m_LocalPosition: {x: 2.59, y: -2.81, z: 0}
   m_LocalScale: {x: 0.7938294, y: 1, z: 1}
   m_Children:
   - {fileID: 3534046320684064088}

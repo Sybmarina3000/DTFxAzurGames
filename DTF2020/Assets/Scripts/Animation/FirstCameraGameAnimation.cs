@@ -5,6 +5,7 @@ namespace DefaultNamespace
 {
     public class FirstCameraGameAnimation : MonoBehaviour
     {
+        [SerializeField] private GameObject _gameCamera;
         [SerializeField] private GameObject _firstPoint;
         [SerializeField] private GameObject _finishPoint;
         [Space(10)]
@@ -18,6 +19,7 @@ namespace DefaultNamespace
         private void Start()
         {
             _player = RealizeBox.instance.player;
+            _player.onSpawnInScene += CloseAnimation;
         }
 
         public void StartAnimation()
@@ -37,7 +39,14 @@ namespace DefaultNamespace
             yield return new WaitForSeconds(_returnTime);
             _player.gameObject.SetActive(true);
             yield break;
-            
         }
+
+        private void CloseAnimation()
+        {
+            _firstPoint.SetActive(false);
+            _gameCamera.SetActive(true);
+        }
+        
+        
     }
 }
