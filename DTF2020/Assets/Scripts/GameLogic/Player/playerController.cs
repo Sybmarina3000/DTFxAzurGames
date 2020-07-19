@@ -47,7 +47,7 @@ public class playerController : MonoBehaviour, actionObject
         }
         if (slowMode)
         {
-            float slowSpeed = 0.05f;
+            float slowSpeed = 0.02f;
             if (Time.timeScale > slowSpeed)
             {
                 Time.timeScale -= Time.fixedDeltaTime * 10;
@@ -80,7 +80,7 @@ public class playerController : MonoBehaviour, actionObject
         moveController.velocity = new Vector2(0, 0);
         if (ground)
         {
-            moveController.AddForce(new Vector2(direction.x * force * 0.6f, direction.y * force * 0.6f));
+            moveController.AddForce(new Vector2(direction.x * force * 0.7f, direction.y * force * 0.7f));
         }
         else
         { 
@@ -128,7 +128,7 @@ public class playerController : MonoBehaviour, actionObject
     {
         actionController.clearActions(gameObject);
         setNormalTime();
-        actionController.addDelay(gameObject, 2.0f, new callback(new callbackFunc(startSlowMode)));
+        actionController.addDelay(gameObject, 0.5f, new callback(new callbackFunc(startSlowMode)));
         Debug.Log("jumpNext");
     }
 
@@ -139,7 +139,7 @@ public class playerController : MonoBehaviour, actionObject
         DefaultNamespace.RealizeBox.instance.touchController.startJump();
         var secondCallback = new callback<bool>(new callbackFunc<bool>(setSlowMode), false);
         var firstCallback = new callback(new callbackFunc(DefaultNamespace.RealizeBox.instance.touchController.endJump), secondCallback);
-        actionController.addDelay(gameObject, 13.5f, firstCallback);
+        actionController.addDelay(gameObject, 3.0f, firstCallback);
     }
 
     //private void OnTriggerExit2D(Collider2D collision)
