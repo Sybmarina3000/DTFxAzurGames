@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -8,9 +9,8 @@ namespace DefaultNamespace
         private DirectionConus _directionConus;
         private playerController _player;
 
-        private bool _touchFlag = false;
         bool isTouch = false;
-
+        bool jump = false;
 
         private void Start()
         {
@@ -20,38 +20,31 @@ namespace DefaultNamespace
             enabled = false;
         }
 
+        public void startJump()
+        {
+            var point = RealizeBox.instance.level.getCurrentPoint();
+            _directionConus.Spawn(_player.gameObject.transform.position, point.transform.position);
+            jump = true;
+        }
+
+        public void endJump()
+        {
+            _directionConus.Hide();
+            jump = false;
+        }
+
         private void Update()
         {
-            
-            if (Input.GetMouseButtonDown(0))
+            if (!jump)
             {
-                isTouch = true;
+                return;
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.touchCount == 1 || Input.GetMouseButtonDown(0))
             {
-                isTouch = false;
-            }
-            if (Input.touchCount == 1 || isTouch)
-            {
-                if (_touchFlag)
-                    return;
-                
-                _touchFlag = true;
-
-                var point = RealizeBox.instance.level.getCurrentPoint();
-                _directionConus.Spawn(_player.gameObject.transform.position, point.transform.position);
-                RealizeBox.instance.player.setSlowMode(true);
-               
-            }
-            else
-            {
-                if (!_touchFlag)
-                    return;
-
-                _touchFlag = false;
                 _directionConus.Hide();
                 _player.jump(_directionConus.GetDirection());
                 RealizeBox.instance.player.setSlowMode(false);
+                jump = false;
             }
         }
     }

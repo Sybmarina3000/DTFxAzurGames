@@ -29,6 +29,7 @@ public class levelConroller : MonoBehaviour
             {
                 points.Add(point);
             }
+            points.Reverse();
             for (int n = 0; n < transform.childCount; n++)
             {
                 var child = transform.GetChild(n);
