@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainBlueAnimation : MonoBehaviour
 {
@@ -11,11 +8,14 @@ public class MainBlueAnimation : MonoBehaviour
 
     [SerializeField] private float _timeIdleButton;
     
-    [SerializeField] private SpriteRenderer _shadowPers;
+    [SerializeField] private CanvasGroup _shadowPers;
     [SerializeField] private RectTransform _spot;
     
     [SerializeField] private RectTransform _button;
 
+    [SerializeField] private float _timeSwitchPanel;
+    [SerializeField] private CanvasGroup _panelPers;
+    [SerializeField] private CanvasGroup _panelLvl;
     private Sequence _animation;
     
     // Start is called before the first frame update
@@ -36,12 +36,20 @@ public class MainBlueAnimation : MonoBehaviour
 
     public void OnCompleteFirstAnimation()
     {
-       // _button.DOScale(0.7f, _timeIdleButton).From(1).SetLoops(-1, LoopType.Yoyo);
+        _button.DOScale(0.85f, _timeIdleButton).From(1).SetLoops(-1, LoopType.Yoyo);
     }
     
     public void StartAnim()
     {
         _spot.DOScale(1, _timeSpot).From(0.1f);
         
+    }
+
+    public void OpenLvlMap()
+    {
+        _panelPers.DOFade(0, _timeSwitchPanel).OnComplete( () => _panelPers.gameObject.SetActive(false));
+        
+        _panelLvl.gameObject.SetActive(true);
+        _panelLvl.DOFade(1, _timeSwitchPanel);
     }
 }
