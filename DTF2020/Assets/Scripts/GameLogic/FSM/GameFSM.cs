@@ -19,6 +19,8 @@ namespace DefaultNamespace
             //Add state class 
             _statesDictionary.Add(GameState.FirstAnimation, new FirstAnimationState());
             _statesDictionary.Add(GameState.PlayGame, new PlayGameState());
+            
+            _statesDictionary.Add(GameState.Lose, new DefeatState());
         }
 
         public override void StartFSM()

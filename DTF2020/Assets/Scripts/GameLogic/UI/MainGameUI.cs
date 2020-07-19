@@ -4,7 +4,7 @@ namespace DefaultNamespace.UI
 {
     public class MainGameUI : MonoBehaviour
     {
-        [SerializeField] private GameObject _gameUi;
+        [SerializeField] private CanvasGroup _gameUi;
         [SerializeField] private GameObject _victoryUi;
         [SerializeField] private GameObject _defeatUi;
         
@@ -14,12 +14,12 @@ namespace DefaultNamespace.UI
 
         public void ShowGameUi()
         {
-            _gameUi.SetActive(true);
+            _gameUi.alpha = 1;
         }
         
         public void HideGameUi()
         {
-            _gameUi.SetActive(false);
+            _gameUi.alpha = 0;
         }
 
         public void ShowVictoryWindow()

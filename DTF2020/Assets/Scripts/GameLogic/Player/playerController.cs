@@ -89,13 +89,14 @@ public class playerController : MonoBehaviour, actionObject
             onSpawnInScene?.Invoke();
         }
         // надо добавить задержку, чтобы он стартовал не сразу
-        actionController.addMoveToFromPosAndSpeed(gameObject,
+        // TODO непонятно надо ли его двигать. вопрос к ГД. пока так не делаем
+        /*actionController.addMoveToFromPosAndSpeed(gameObject,
             new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
             new Vector2(gameObject.transform.position.x + 9999.0f, gameObject.transform.position.y),
             typeMove.LINARY,
             3,
             5,
-            typeSpeed.CUBIC);
+            typeSpeed.CUBIC);*/
     }
 
     private void OnCollisionExit2D(Collision2D collision)

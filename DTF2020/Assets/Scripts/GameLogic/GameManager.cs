@@ -11,6 +11,7 @@ namespace DefaultNamespace
         {
             FSM = RealizeBox.instance.gameFSM;
             RealizeBox.instance.player.onSpawnInScene += OnPlayerSpawn;
+            RealizeBox.instance.score.onUpdateValue += OnScoreChange;
         }
 
         private void Start()
@@ -26,7 +27,14 @@ namespace DefaultNamespace
         {
             FSM.SetNewState(GameState.PlayGame);
         }
-        
+
+        private void OnScoreChange(float amount, ScoreDecreaseType type)
+        {
+            if (amount == 0)
+            {
+                FSM.SetNewState(GameState.Lose);
+            }
+        }
         
     }
 }
