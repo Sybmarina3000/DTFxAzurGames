@@ -36,7 +36,7 @@ public class MainBlueAnimation : MonoBehaviour
 
     public void OnCompleteFirstAnimation()
     {
-       // _button.DOScale(0.7f, _timeIdleButton).From(1).SetLoops(-1, LoopType.Yoyo);
+        _button.DOScale(0.85f, _timeIdleButton).From(1).SetLoops(-1, LoopType.Yoyo);
     }
     
     public void StartAnim()

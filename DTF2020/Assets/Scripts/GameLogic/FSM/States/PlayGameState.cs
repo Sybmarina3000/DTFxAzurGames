@@ -18,6 +18,7 @@ namespace DefaultNamespace
         
         public override void Enter(GameState last)
         {
+            
             base.Enter(last);
             _mainGameUi.ShowGameUi();
             _score.StartDecreaseScore();

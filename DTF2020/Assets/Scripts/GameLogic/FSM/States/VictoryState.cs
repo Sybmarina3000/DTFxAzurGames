@@ -17,11 +17,16 @@ namespace DefaultNamespace
             base.Enter(last);
             //TODO Start win Animation, Show victory window;
             _mainGameUi.ShowVictoryWindow();
+            
+            //TODO Check stars
+            //PlayerLoadPrefs.currentStars = 2;
+            PlayerLoadPrefs.SaveCurrentLevelProgress();
+            
+            
         }
 
         public override void Exit(GameState last)
         {
         }
-        
     }
 }
