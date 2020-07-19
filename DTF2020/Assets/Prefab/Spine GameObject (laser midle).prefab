@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442838046428522788}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.02, y: -0.25, z: 0}
+  m_LocalPosition: {x: 3.25, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1662169941457025656}
@@ -43,21 +43,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eae93e34ecaed4ca8e54e8d2a1b73b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightColor: {r: 0.9058824, g: 0.27058825, b: 0.38431376, a: 1}
+  lightColor: {r: 1, g: 0, b: 0.17056832, a: 1}
   lightAlpha: 1
-  lightSize: 5
+  lightSize: 3
   lightCoreSize: 0.5
   textureSize: 1
   enableCollisions: 1
-  rotationEnabled: 0
+  rotationEnabled: 1
   eventHandling: 0
   additive: 0
-  additive_alpha: 0.25
+  additive_alpha: 0.166
   whenInsideCollider: 0
   disableWhenInvisible: 0
   lightSprite: 1
   sprite: {fileID: 21300000, guid: ebf9f562193aefd4aa72c975095cc3a9, type: 3}
-  spriteFlipX: 1
+  spriteFlipX: 0
   spriteFlipY: 0
   layerCount: 1
   layerSetting:
@@ -107,17 +107,17 @@ MonoBehaviour:
   lightignEventCache: []
   movement:
     update: 0
-    updatePosition: {x: 4.987365, y: -3.06, z: 0}
-    updateColor: {r: 0.9058824, g: 0.27058825, b: 0.38431376, a: 1}
+    updatePosition: {x: 5.1699457, y: -2.8999999, z: 0}
+    updateColor: {r: 1, g: 0, b: 0.17056832, a: 1}
     updateRotation: 0
-    updateSize: 5
+    updateSize: 3
     updateAlpha: 1
     move: 0
     movePosition: {x: 0, y: 0, z: 0}
     sprite: {fileID: 21300000, guid: ebf9f562193aefd4aa72c975095cc3a9, type: 3}
-    spriteflipX: 1
+    spriteflipX: 0
     spriteflipY: 0
-  occlusionSize: 15.4
+  occlusionSize: 51.3
 --- !u!1 &1662169941457025652
 GameObject:
   m_ObjectHideFlags: 0
