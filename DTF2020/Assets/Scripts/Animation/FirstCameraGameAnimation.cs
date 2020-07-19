@@ -46,5 +46,7 @@ namespace DefaultNamespace
             _firstPoint.SetActive(false);
             _gameCamera.SetActive(true);
         }
+        
+        
     }
 }
