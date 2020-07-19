@@ -1,14 +1,18 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, actionObject
 {
+    public event Action onSpawnInScene;
+    
     public UnityEngine.UI.Text debugText;
     public bool slowMode = false;
     float force = 600.0f;
     Rigidbody2D moveController = null;
+
+    private bool _isFirstCollision = true; // with floor, after spawn;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +83,12 @@ public class playerController : MonoBehaviour, actionObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (_isFirstCollision)
+        {
+            _isFirstCollision = false;
+            onSpawnInScene?.Invoke();
+        }
+        // надо добавить задержку, чтобы он стартовал не сразу
         actionController.addMoveToFromPosAndSpeed(gameObject,
             new Vector2(gameObject.transform.position.x, gameObject.transform.position.y),
             new Vector2(gameObject.transform.position.x + 9999.0f, gameObject.transform.position.y),
