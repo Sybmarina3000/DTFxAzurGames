@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour, actionObject
     
     public UnityEngine.UI.Text debugText;
     bool slowMode = false;
-    float force = 1800.0f;
+    float force = 600.0f;
     Rigidbody2D moveController = null;
     public GameObject spineObject;
     animController animModule;
@@ -47,17 +47,15 @@ public class playerController : MonoBehaviour, actionObject
         }
         if (slowMode)
         {
-            float slowSpeed = 0.1f;
+            float slowSpeed = 0.25f;
             if (Time.timeScale > slowSpeed)
             {
-                Time.timeScale -= Time.fixedDeltaTime * 10;
-                Time.fixedDeltaTime = Time.fixedDeltaTime = Time.timeScale * .02f;
+                Time.timeScale -= Time.deltaTime * 4;
             }
             else
             {
                 Time.timeScale = slowSpeed;
             }
-            Time.fixedDeltaTime = Time.fixedDeltaTime = Time.timeScale * .02f;
             debugText.text = Time.timeScale.ToString();
         }
         else
@@ -65,13 +63,12 @@ public class playerController : MonoBehaviour, actionObject
             float normalSpeed = 1.0f;
             if (Time.timeScale < normalSpeed)
             {
-                Time.timeScale += Time.fixedDeltaTime * 20;
+                Time.timeScale += Time.deltaTime * 5;
             }
             else
             {
                 Time.timeScale = normalSpeed;
             }
-            Time.fixedDeltaTime = Time.fixedDeltaTime = Time.timeScale * .02f;
             debugText.text = Time.timeScale.ToString();
         }
     }
@@ -95,12 +92,6 @@ public class playerController : MonoBehaviour, actionObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "floor")
-        {
-            actionController.clearActions(gameObject);
-            DefaultNamespace.RealizeBox.instance.touchController.startJump();
-            slowMode = false;
-        }
         if (_isFirstCollision)
         {
             _isFirstCollision = false;
@@ -122,28 +113,6 @@ public class playerController : MonoBehaviour, actionObject
     {
         actionController.clearActions(gameObject);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "point" && !slowMode)
-        {
-            actionController.clearActions(gameObject);
-            slowMode = true;
-            DefaultNamespace.RealizeBox.instance.touchController.startJump();
-            var secondCallback = new callback<bool>(new callbackFunc<bool>(setSlowMode), false);
-            var firstCallback = new callback(new callbackFunc(DefaultNamespace.RealizeBox.instance.touchController.endJump), secondCallback);
-            actionController.addDelay(gameObject, 3.5f, firstCallback);
-        }
-    }
-
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "point")
-    //    {
-    //        slowMode = false;
-    //        DefaultNamespace.RealizeBox.instance.touchController.endJump();
-    //    }
-    //}
 
     public void setSlowMode(bool slow)
     {

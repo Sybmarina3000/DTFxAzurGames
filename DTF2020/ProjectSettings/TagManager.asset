@@ -6,7 +6,6 @@ TagManager:
   tags:
   - laser
   - point
-  - floor
   layers:
   - Default
   - TransparentFX
