@@ -167,7 +167,7 @@ public class utilFunction
         {
             Directory.CreateDirectory("Settings");
         }
-        var dir = "Settings/" + nameConfig + ".json";
+        var dir = "Assets/Settings/" + nameConfig + ".json";
         if (!File.Exists(dir))
         {
             return "";
