@@ -1,9 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
+public enum ScoreDecreaseType 
+{
+    Time,
+    Damage,
+}
+
 public class Score : MonoBehaviour
 {
-    public Action<float> onUpdateValue;
+    public Action<float, ScoreDecreaseType> onUpdateValue;
     
     public float currentScore => _currentScore; 
     
@@ -15,14 +21,19 @@ public class Score : MonoBehaviour
     }
 
     //FOR DAMAGE
-    public void Decrease(float amount)
+    public void Decrease(float amount, ScoreDecreaseType type)
     {
         _currentScore = (_currentScore - amount) < 0 ? 0 : (_currentScore - amount);
-        onUpdateValue?.Invoke(_currentScore);
+        onUpdateValue?.Invoke(_currentScore, type);
     }
 
     private void Update()
     {
-        Decrease(Time.deltaTime);
+        Decrease(Time.deltaTime, ScoreDecreaseType.Time);
+    }
+
+    public void TestDamage(int value)
+    {
+        Decrease(value, ScoreDecreaseType.Damage);
     }
 }
