@@ -21,7 +21,7 @@ public class actionTime : actionValue
     public float getTime() { return time; }
     public override float getProgress() { return (fullTime - time) / fullTime; }
     public float getFullTime() { return fullTime; }
-    public override void update() { time -= Time.deltaTime; }
+    public override void update() { time -= Time.deltaTime / Time.timeScale; }
     public bool isEnd() { if (time <= 0.0f) { return true; } return false; }
     public override void end() { time = 0.0f; }
 }
@@ -54,8 +54,8 @@ public class actionSpeed : actionValue
 
     public override void update() 
     {
-        spentTime += Time.deltaTime;
-        spentTimeCustom += Time.deltaTime;
+        spentTime += Time.deltaTime / Time.timeScale;
+        spentTimeCustom += Time.deltaTime / Time.timeScale;
     }
     public bool isEnd() 
     {

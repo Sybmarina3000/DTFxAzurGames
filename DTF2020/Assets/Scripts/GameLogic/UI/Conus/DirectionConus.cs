@@ -119,7 +119,7 @@ namespace DefaultNamespace
                         gran = currentAngle * (-1);
                 }
                 
-                var angle = gran + (_radius / _timeOneRound) * 0.02f * direction;
+                var angle = gran + (_radius / _timeOneRound) * (Time.deltaTime / Time.timeScale * 2) * direction;
                 _arrow.Rotate( Vector3.back, angle);
                 
                 currentAngle += angle;

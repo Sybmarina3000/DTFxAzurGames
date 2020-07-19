@@ -74,6 +74,12 @@ public class playerController : MonoBehaviour, actionObject
         debugText.text = Time.timeScale.ToString();
     }
 
+    //Time.deltaTime * Time.scaleTime
+    //Time.deltaTime * 0.2 = x
+    //x = 0.2Time.deltatime
+    //x/0.2 = Time.deltaTime
+
+
     public void jump(Vector2 direction, bool ground = false)
     {
         setNormalTime();
