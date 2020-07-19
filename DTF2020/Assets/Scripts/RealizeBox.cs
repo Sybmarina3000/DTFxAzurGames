@@ -13,6 +13,7 @@ namespace DefaultNamespace
         public MainGameUI mainGameUi => _mainGameUi;
         public TouchController touchController => _touchController;
         public Score score => _score;
+        public levelConroller level => _level;
 
         [SerializeField] private playerController _player;
         [SerializeField] private DirectionConus _directionConus;
@@ -20,7 +21,8 @@ namespace DefaultNamespace
         [SerializeField] private GameFSM _gameFsm;
         [SerializeField] private MainGameUI _mainGameUi;
         [SerializeField] private Score _score;
-        
+
+        [SerializeField] private levelConroller _level;
         [SerializeField] private TouchController _touchController;
     }
 }

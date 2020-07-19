@@ -163,9 +163,9 @@ public class utilFunction
 
     static string loadFile(string nameConfig)
     {
-        if (!Directory.Exists("Settings"))
+        if (!Directory.Exists("Assets/Settings/"))
         {
-            Directory.CreateDirectory("Settings");
+            Directory.CreateDirectory("Assets/Settings/");
         }
         var dir = "Assets/Settings/" + nameConfig + ".json";
         if (!File.Exists(dir))
@@ -193,5 +193,21 @@ public class utilFunction
             return JsonUtility.FromJson<T>(data);
         }
         return default;
+    }
+
+    static protected void saveFile(string data, string nameFile)
+    {
+        if (!Directory.Exists("Assets/Settings/"))
+        {
+            Directory.CreateDirectory("Assets/Settings/");
+        }
+        File.WriteAllText("Assets/Settings/" + nameFile + ".json", data);
+    }
+
+
+    static public void saveArrayData<T>(T[] data, string config)
+    {
+        var dataElemnt = JsonLoader.ToJson(data);
+        saveFile(dataElemnt, config);
     }
 }

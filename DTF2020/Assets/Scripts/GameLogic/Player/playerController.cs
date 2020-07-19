@@ -39,7 +39,7 @@ public class playerController : MonoBehaviour, actionObject
         }
         if (slowMode)
         {
-            float slowSpeed = 0.4f;
+            float slowSpeed = 0.25f;
             if (Time.timeScale > slowSpeed)
             {
                 Time.timeScale -= Time.deltaTime * 4;
@@ -102,5 +102,15 @@ public class playerController : MonoBehaviour, actionObject
     private void OnCollisionExit2D(Collision2D collision)
     {
         actionController.clearActions(gameObject);
+    }
+
+    public void setSlowMode(bool slow)
+    {
+        slowMode = slow;
+    }
+
+    public bool isSlowMode()
+    {
+        return slowMode;
     }
 }
