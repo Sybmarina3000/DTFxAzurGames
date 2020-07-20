@@ -20,7 +20,7 @@ namespace DefaultNamespace
 
         private void LateStart()
         {
-            FSM.StartFSM();
+            FSM.SetNewState(GameState.Victory);//FSM.StartFSM();
         }
         private void OnPlayerSpawn()
         {
@@ -33,6 +33,11 @@ namespace DefaultNamespace
             {
                 FSM.SetNewState(GameState.Lose);
             }
+        }
+
+        public void OnWin()
+        {
+            FSM.SetNewState(GameState.Victory);
         }
         
     }
