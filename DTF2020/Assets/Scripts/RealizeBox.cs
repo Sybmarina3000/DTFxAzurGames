@@ -18,6 +18,8 @@ namespace DefaultNamespace
         public Score score => _score;
         public levelConroller level => _level;
 
+        public GameManager manager => _manager;
+
         [SerializeField] private playerController _player;
         [SerializeField] private DirectionConus _directionConus;
         
@@ -30,5 +32,7 @@ namespace DefaultNamespace
 
         [SerializeField] private levelConroller _level;
         [SerializeField] private TouchController _touchController;
+
+        [SerializeField] private GameManager _manager;
     }
 }

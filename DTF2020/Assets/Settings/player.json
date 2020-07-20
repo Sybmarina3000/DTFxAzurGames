@@ -16,6 +16,28 @@
             "animName": "",
             "animSpeed": 1.0
 			
+        },
+        {
+            "animName": "pose_1",
+            "animSpeed": 1.0
+			
+        },
+        {
+            "animName": "pose_2",
+            "animSpeed": 1.0
+			
+        },
+        {
+            "animName": "pose_3",
+            "animSpeed": 1.0
+        },
+        {
+            "animName": "pose_4",
+            "animSpeed": 1.0
+        },
+        {
+            "animName": "pose_5",
+            "animSpeed": 1.0
         }
     ]
 }

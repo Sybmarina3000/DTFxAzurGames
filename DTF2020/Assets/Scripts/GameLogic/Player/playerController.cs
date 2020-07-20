@@ -43,14 +43,14 @@ public class playerController : MonoBehaviour, actionObject
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            jump(new Vector2(0, 1));
+            jump(new Vector2(0, 1), false);
         }
         if (slowMode)
         {
-            float slowSpeed = 0.02f;
+            float slowSpeed = DefaultNamespace.RealizeBox.instance.manager.database.coefSlow;
             if (Time.timeScale > slowSpeed)
             {
-                Time.timeScale -= Time.fixedDeltaTime * 10;
+                Time.timeScale -= Time.fixedDeltaTime * DefaultNamespace.RealizeBox.instance.manager.database.speedSlowModeOn;
                 Time.fixedDeltaTime = Time.fixedDeltaTime = Time.timeScale * .02f;
             }
             else
@@ -68,7 +68,7 @@ public class playerController : MonoBehaviour, actionObject
 
     void setNormalTime()
     {
-        float normalSpeed = 1.0f;
+        float normalSpeed = DefaultNamespace.RealizeBox.instance.manager.database.coefNormal;
         Time.timeScale = normalSpeed;
         Time.fixedDeltaTime = Time.timeScale * .02f;
         debugText.text = Time.timeScale.ToString();
@@ -80,17 +80,17 @@ public class playerController : MonoBehaviour, actionObject
     //x/0.2 = Time.deltaTime
 
 
-    public void jump(Vector2 direction, bool ground = false)
+    public void jump(Vector2 direction, bool ground)
     {
         setNormalTime();
         moveController.velocity = new Vector2(0, 0);
         if (ground)
         {
-            moveController.AddForce(new Vector2(direction.x * force * 0.7f, direction.y * force * 0.7f));
+            moveController.AddForce(new Vector2(direction.x * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpGround, direction.y * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpGround));
         }
         else
         { 
-            moveController.AddForce(new Vector2 (direction.x * force, direction.y * force));
+            moveController.AddForce(new Vector2 (direction.x * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpFly, direction.y * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpFly));
         }
         animModule.setMove();
     }
@@ -134,7 +134,9 @@ public class playerController : MonoBehaviour, actionObject
     {
         actionController.clearActions(gameObject);
         setNormalTime();
-        actionController.addDelay(gameObject, 0.5f, new callback(new callbackFunc(startSlowMode)));
+
+        actionController.addDelay(gameObject, DefaultNamespace.RealizeBox.instance.manager.database.timeBeforeNewSlowMode - 0.25f, new callback(new callbackFunc(animModule.setRandom)));
+        actionController.addDelay(gameObject, 0.25f, new callback(new callbackFunc(startSlowMode)));
         Debug.Log("jumpNext");
     }
 
@@ -145,7 +147,7 @@ public class playerController : MonoBehaviour, actionObject
         DefaultNamespace.RealizeBox.instance.touchController.startJump();
         var secondCallback = new callback<bool>(new callbackFunc<bool>(setSlowMode), false);
         var firstCallback = new callback(new callbackFunc(DefaultNamespace.RealizeBox.instance.touchController.endJump), secondCallback);
-        actionController.addDelay(gameObject, 3.0f, firstCallback);
+        actionController.addDelay(gameObject, DefaultNamespace.RealizeBox.instance.manager.database.timeSlowMode, firstCallback);
     }
 
     //private void OnTriggerExit2D(Collider2D collision)
