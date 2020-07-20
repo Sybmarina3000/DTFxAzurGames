@@ -51,6 +51,11 @@ namespace DefaultNamespace
                 FSM.SetNewState(GameState.Lose);
             }
         }
+
+        public void OnWin()
+        {
+            FSM.SetNewState(GameState.Victory);
+        }
         
     }
 }

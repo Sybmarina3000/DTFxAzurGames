@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace.UI;
+using Spine.Unity;
 using TMPro;
 using UnityEngine;
 
@@ -19,6 +20,11 @@ namespace DefaultNamespace
         public levelConroller level => _level;
 
         public GameManager manager => _manager;
+        public Movie movie =>_movie;
+        public GameObject camera =>_camera;
+        public GameObject victoryCamera => _victoryCamera;
+        public SkeletonAnimation skeletonSteal => _skeletonSteal;
+        public VictoryPanel victoryPanel => _victoryPanel;
 
         [SerializeField] private playerController _player;
         [SerializeField] private DirectionConus _directionConus;
@@ -34,5 +40,12 @@ namespace DefaultNamespace
         [SerializeField] private TouchController _touchController;
 
         [SerializeField] private GameManager _manager;
+        
+        //for victory
+        [SerializeField] private Movie _movie;
+        [SerializeField] private GameObject _camera;
+        [SerializeField] private GameObject _victoryCamera;
+        [SerializeField] private SkeletonAnimation _skeletonSteal;
+        [SerializeField] private VictoryPanel _victoryPanel;
     }
 }

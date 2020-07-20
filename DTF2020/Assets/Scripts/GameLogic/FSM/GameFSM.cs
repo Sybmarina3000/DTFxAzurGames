@@ -21,6 +21,7 @@ namespace DefaultNamespace
             _statesDictionary.Add(GameState.PlayGame, new PlayGameState());
             
             _statesDictionary.Add(GameState.Lose, new DefeatState());
+            _statesDictionary.Add(GameState.Victory, new VictoryState());
         }
 
         public override void StartFSM()
