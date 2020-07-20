@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour, actionObject
         animModule = new animController();
         animModule.init(spineObject, dirConfigAnim, dirConfigAnimMix);
         animModule.setIdle();
+        Physics2D.autoSimulation = true;
     }
 
     //~playerController()
@@ -150,18 +151,27 @@ public class playerController : MonoBehaviour, actionObject
         actionController.addDelay(gameObject, DefaultNamespace.RealizeBox.instance.manager.database.timeSlowMode, firstCallback);
     }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "point")
-    //    {
-    //        slowMode = false;
-    //        DefaultNamespace.RealizeBox.instance.touchController.endJump();
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "point")
+        {
+            if (DefaultNamespace.RealizeBox.instance.level.getEndPoint().GetComponent<Collider2D>() == collision)
+            {
+                DefaultNamespace.RealizeBox.instance.manager.OnWin();
+                Physics2D.autoSimulation = false;
+            }
+        }
+    }
 
     public void setSlowMode(bool slow)
     {
         slowMode = slow;
+    }
+
+    public void endAnim()
+    {
+        actionController.clearActions(gameObject);
+        animModule.setDead();
     }
 
     public bool isSlowMode()

@@ -9,8 +9,8 @@
             "animSpeed": 1.0
         },
         {
-            "animName": "",
-            "animSpeed": 1.0
+            "animName": "damage",
+            "animSpeed": 0.1
         },
         {
             "animName": "",

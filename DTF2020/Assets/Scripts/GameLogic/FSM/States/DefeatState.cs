@@ -1,5 +1,6 @@
 ﻿using DefaultNamespace.UI;
 using Helper.Patterns.FSM;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -18,6 +19,9 @@ namespace DefaultNamespace
             //TODO Start Lose Animation, Show defeat window;
             
             _mainGameUi.HideGameUi();
+            Physics2D.autoSimulation = false;
+            RealizeBox.instance.player.setSlowMode(false);
+            RealizeBox.instance.player.endAnim();
             RealizeBox.instance.loseGameAnimation.StartLose();
            // _mainGameUi.ShowDefeatWindow();
         }

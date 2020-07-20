@@ -198,7 +198,8 @@ public class animController
                     }
                 case state.dead:
                     {
-                        componentSkeletonAnimation.AnimationState.SetAnimation(0, getPullAnim()[(int)state_log].animName, false);
+                        setAnim((int)state_log, false);
+                       // componentSkeletonAnimation.AnimationState.SetAnimation(0, getPullAnim()[(int)state_log].animName, false);
                         state_ani = state_log;
                         break;
                     }
