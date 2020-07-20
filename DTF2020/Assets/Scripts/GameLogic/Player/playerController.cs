@@ -21,7 +21,7 @@ public class playerController : MonoBehaviour, actionObject
     void Start()
     {
         initActionObject();
-        colliderFactory.getCollideFromParameters("box", new List<float> { 0, 0,4f,4f }, false, gameObject);
+        colliderFactory.getCollideFromParameters("box", new List<float> { -0.04939353f, 0.06585872f, 1.332784f, 2.155998f }, false, gameObject);
         moveController = GetComponent<Rigidbody2D>();
         animModule = new animController();
         animModule.init(spineObject, dirConfigAnim, dirConfigAnimMix);

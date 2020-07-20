@@ -1,7 +1,7 @@
 {
     "speedConus" : 2.0,
-    "powerJumpFly" : 1800.0,
-    "powerJumpGround" : 1000.0,
+    "powerJumpFly" : 2000.0,
+    "powerJumpGround" : 1200.0,
     "speedSlowModeOn" : 10.0,
     "coefNormal" : 1.0,
     "coefSlow" : 0.02,
