@@ -37,7 +37,7 @@ namespace DefaultNamespace
 
         private void LateStart()
         {
-            FSM.SetNewState(GameState.Victory);//FSM.StartFSM();
+            FSM.StartFSM();
         }
         private void OnPlayerSpawn()
         {

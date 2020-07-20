@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace DefaultNamespace
@@ -67,7 +68,12 @@ namespace DefaultNamespace
 
         public void OpenLvlMap()
         {
-            _panelPers.DOFade(0, _timeSwitchPanel).OnComplete( () => _panelPers.gameObject.SetActive(false));
+            SceneManager.LoadScene("mainMenu");
+        }
+        
+        public void Replay()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
