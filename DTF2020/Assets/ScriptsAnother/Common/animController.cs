@@ -12,8 +12,9 @@ using System.Globalization;
 // componentSkeletonAnimation.AnimationState.GetCurrent(0).mix;
 public class animController
 {
-    enum state { none = 99, idle = 0, run = 1, dead = 2, damage = 3, custom = 3 };//dodge
-
+    enum state { none = 99, idle = 0, run = 1, dead = 2, damage = 3, custom = 4 };//dodge
+    int state_log_custom = (int)state.custom;
+    int state_ani_custom = 0;
 
     [Serializable]
     public class mixData
@@ -93,6 +94,17 @@ public class animController
     public void setDead()
     {
         state_log = state.dead;
+    }
+
+    public void setRandom()
+    {
+        int startIndex = (int)state.custom;
+        int maxIndex = pullAnim.Length;
+        while (state_log_custom == state_ani_custom)
+        { 
+            state_log_custom = UnityEngine.Random.Range(startIndex, maxIndex);
+        }
+        state_log = state.custom;
     }
 
     public bool isCustom()
@@ -190,11 +202,28 @@ public class animController
                         state_ani = state_log;
                         break;
                     }
+                case state.custom:
+                    {        
+                        state_ani = state_log;
+                        break;
+                    }
                 default:
                     {
                         break;
                     }
             }
+            return;
+        }
+        if (state_log == state.custom)
+        {
+            if (state_log_custom != state_ani_custom)
+            {
+                if (getPullAnim().Length > state_log_custom)
+                {
+                    componentSkeletonAnimation.AnimationState.SetAnimation(0, getPullAnim()[state_log_custom].animName, true);
+                }
+            }
+            state_ani_custom = state_log_custom;
         }
     }
 

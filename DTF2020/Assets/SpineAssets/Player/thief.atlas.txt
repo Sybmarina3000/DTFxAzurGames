@@ -1,152 +1,152 @@
 
 thief.png
-size: 512,1024
+size: 1024,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 1_body
   rotate: true
-  xy: 170, 580
+  xy: 449, 200
   size: 154, 234
   orig: 154, 234
   offset: 0, 0
   index: -1
 1_brow_1
-  rotate: false
-  xy: 2, 923
+  rotate: true
+  xy: 604, 5
   size: 25, 17
   orig: 25, 17
   offset: 0, 0
   index: -1
 1_brow_2
-  rotate: false
-  xy: 2, 923
+  rotate: true
+  xy: 604, 5
   size: 25, 17
   orig: 25, 17
   offset: 0, 0
   index: -1
 1_eyes_idle
-  rotate: false
-  xy: 64, 918
+  rotate: true
+  xy: 542, 88
   size: 43, 22
   orig: 43, 22
   offset: 0, 0
   index: -1
 1_left_leg
   rotate: true
-  xy: 157, 751
+  xy: 853, 97
   size: 85, 152
   orig: 85, 152
   offset: 0, 0
   index: -1
 1_right_leg
   rotate: true
-  xy: 311, 736
+  xy: 863, 269
   size: 85, 155
   orig: 85, 155
   offset: 0, 0
   index: -1
 2_eyes_fear
   rotate: false
-  xy: 109, 912
+  xy: 559, 2
   size: 43, 28
   orig: 43, 28
   offset: 0, 0
   index: -1
 diamond (1)
   rotate: false
-  xy: 2, 346
-  size: 392, 232
-  orig: 392, 232
+  xy: 685, 249
+  size: 176, 105
+  orig: 176, 105
   offset: 0, 0
   index: -1
 f0
   rotate: true
-  xy: 396, 889
+  xy: 449, 43
   size: 51, 73
   orig: 51, 73
   offset: 0, 0
   index: -1
 f1
   rotate: false
-  xy: 204, 905
+  xy: 524, 51
   size: 42, 35
   orig: 42, 35
   offset: 0, 0
   index: -1
 f2
   rotate: false
-  xy: 29, 921
+  xy: 524, 30
   size: 33, 19
   orig: 33, 19
   offset: 0, 0
   index: -1
 f3
-  rotate: false
-  xy: 328, 823
+  rotate: true
+  xy: 667, 29
   size: 66, 68
   orig: 66, 68
   offset: 0, 0
   index: -1
 f4
   rotate: false
-  xy: 341, 893
+  xy: 568, 32
   size: 53, 47
   orig: 53, 47
   offset: 0, 0
   index: -1
 f5
-  rotate: false
-  xy: 154, 912
+  rotate: true
+  xy: 623, 31
   size: 48, 28
   orig: 48, 28
   offset: 0, 0
   index: -1
 flash_blur
   rotate: false
-  xy: 2, 2
+  xy: 2, 12
   size: 445, 342
   orig: 445, 342
   offset: 0, 0
   index: -1
 left_hand
   rotate: false
-  xy: 209, 838
+  xy: 449, 133
   size: 117, 65
   orig: 117, 65
   offset: 0, 0
   index: -1
 left_hand2
   rotate: true
-  xy: 2, 857
+  xy: 568, 81
   size: 59, 97
   orig: 59, 97
   offset: 0, 0
   index: -1
 left_leg_rever
   rotate: false
-  xy: 2, 599
+  xy: 685, 97
   size: 166, 150
   orig: 166, 150
   offset: 0, 0
   index: -1
 right_arm
   rotate: false
-  xy: 248, 905
+  xy: 449, 96
   size: 91, 35
   orig: 91, 35
   offset: 0, 0
   index: -1
 right_hand2
   rotate: true
-  xy: 101, 847
+  xy: 568, 142
   size: 56, 106
   orig: 56, 106
   offset: 0, 0
   index: -1
 right_leg_rever
   rotate: true
-  xy: 2, 762
+  xy: 863, 184
   size: 83, 153
   orig: 83, 153
   offset: 0, 0

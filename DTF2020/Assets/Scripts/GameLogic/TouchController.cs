@@ -56,7 +56,7 @@ namespace DefaultNamespace
                 }
                 else
                 { 
-                    _player.jump(_directionConus.GetDirection());
+                    _player.jump(_directionConus.GetDirection(), false);
                 }
                 RealizeBox.instance.player.setSlowMode(false);
                 RealizeBox.instance.player.nextStepSlowMode();
