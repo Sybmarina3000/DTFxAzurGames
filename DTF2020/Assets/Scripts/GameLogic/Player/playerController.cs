@@ -11,22 +11,42 @@ public class playerController : MonoBehaviour, actionObject
     float force = 1800.0f;
     Rigidbody2D moveController = null;
     public GameObject spineObject;
+    public GameObject sirenObject;
     animController animModule;
+    animController animSirenModule;
     public string dirConfigAnim;
     public string dirConfigAnimMix;
 
+    public string dirConfigAnimSiren;
+    public string dirConfigAnimSirenMix;
+
     private bool _isFirstCollision = true; // with floor, after spawn;
-    
+
+    public FMODUnity.StudioGlobalParameterTrigger triggerSlouMoSound;
+    public FMODUnity.StudioGlobalParameterTrigger triggerGlobalState;
+
     // Start is called before the first frame update
     void Start()
     {
+        startPlay();
+        //trigger.SendMessage("game_state", 2);
+    }
+
+    public void startPlay()
+    {
+        gameObject.SetActive(true);
         initActionObject();
         colliderFactory.getCollideFromParameters("box", new List<float> { -0.04939353f, 0.06585872f, 1.332784f, 2.155998f }, false, gameObject);
         moveController = GetComponent<Rigidbody2D>();
         animModule = new animController();
+        animSirenModule = new animController();
         animModule.init(spineObject, dirConfigAnim, dirConfigAnimMix);
         animModule.setIdle();
+        animSirenModule.init(sirenObject, dirConfigAnimSiren, dirConfigAnimSirenMix);
         Physics2D.autoSimulation = true;
+        triggerGlobalState.value = 2;
+        triggerGlobalState.TriggerParameters();
+        DefaultNamespace.RealizeBox.instance.score.StartDecreaseScore();
     }
 
     //~playerController()
@@ -38,6 +58,7 @@ public class playerController : MonoBehaviour, actionObject
     void Update()
     {
         animModule.customUpdate();
+        animSirenModule.customUpdate();
         if (Input.GetKeyDown(KeyCode.F3))
         {
             slowMode = !slowMode;
@@ -45,6 +66,15 @@ public class playerController : MonoBehaviour, actionObject
         if (Input.GetKeyDown(KeyCode.F4))
         {
             jump(new Vector2(0, 1), false);
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            DefaultNamespace.RealizeBox.instance.manager.OnWin();
+            sirenObject.SetActive(true);
+            animSirenModule.setDead();
+            Physics2D.autoSimulation = false;
+            triggerGlobalState.value = 4;
+            triggerGlobalState.TriggerParameters();
         }
         if (slowMode)
         {
@@ -73,6 +103,8 @@ public class playerController : MonoBehaviour, actionObject
         Time.timeScale = normalSpeed;
         Time.fixedDeltaTime = Time.timeScale * .02f;
         debugText.text = Time.timeScale.ToString();
+        triggerSlouMoSound.value = 0;
+        triggerSlouMoSound.TriggerParameters();
     }
 
     //Time.deltaTime * Time.scaleTime
@@ -87,6 +119,7 @@ public class playerController : MonoBehaviour, actionObject
         moveController.velocity = new Vector2(0, 0);
         if (ground)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/jump_2", transform.position);
             moveController.AddForce(new Vector2(direction.x * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpGround, direction.y * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpGround));
         }
         else
@@ -149,6 +182,8 @@ public class playerController : MonoBehaviour, actionObject
         var secondCallback = new callback<bool>(new callbackFunc<bool>(setSlowMode), false);
         var firstCallback = new callback(new callbackFunc(DefaultNamespace.RealizeBox.instance.touchController.endJump), secondCallback);
         actionController.addDelay(gameObject, DefaultNamespace.RealizeBox.instance.manager.database.timeSlowMode, firstCallback);
+        triggerSlouMoSound.value = 1;
+        triggerSlouMoSound.TriggerParameters();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -158,7 +193,11 @@ public class playerController : MonoBehaviour, actionObject
             if (DefaultNamespace.RealizeBox.instance.level.getEndPoint().GetComponent<Collider2D>() == collision)
             {
                 DefaultNamespace.RealizeBox.instance.manager.OnWin();
+                sirenObject.SetActive(true);
+                animSirenModule.setDead();
                 Physics2D.autoSimulation = false;
+                triggerGlobalState.value = 4;
+                triggerGlobalState.TriggerParameters();
             }
         }
     }
@@ -172,6 +211,10 @@ public class playerController : MonoBehaviour, actionObject
     {
         actionController.clearActions(gameObject);
         animModule.setDead();
+        sirenObject.SetActive(true);
+        animSirenModule.setDead();
+        triggerGlobalState.value = 3;
+        triggerGlobalState.TriggerParameters();
     }
 
     public bool isSlowMode()

@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 1662169941457025657}
   - component: {fileID: 1662169941457025658}
   - component: {fileID: 1662169941457025659}
-  - component: {fileID: 121828053808340794}
   - component: {fileID: 482121209237194407}
   - component: {fileID: 285175515091468651}
+  - component: {fileID: 3986735836258373250}
   m_Layer: 0
-  m_Name: Spine GameObject (laser midle)
+  m_Name: laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   zSpacing: 0
   useClipping: 1
   immutableTriangles: 0
-  pmaVertexColors: 0
+  pmaVertexColors: 1
   clearStateOnDisable: 0
   tintBlack: 0
   singleSubmesh: 0
@@ -119,20 +119,6 @@ MonoBehaviour:
   _animationName: 
   loop: 0
   timeScale: 1
---- !u!114 &121828053808340794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662169941457025652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c41f3cbb3f3f3f498bb9a9a06cb991b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dirAnimConfig: laser
-  dirAnimMixConfig: laserMix
 --- !u!61 &482121209237194407
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,4 +157,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5f2796357f427a9d6730bbc16c2ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 3
+--- !u!114 &3986735836258373250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662169941457025652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c41f3cbb3f3f3f498bb9a9a06cb991b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dirAnimConfig: laser
+  dirAnimMixConfig: laserMix

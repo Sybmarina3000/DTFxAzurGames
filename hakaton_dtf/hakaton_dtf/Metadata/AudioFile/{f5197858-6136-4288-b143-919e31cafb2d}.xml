@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{f5197858-6136-4288-b143-919e31cafb2d}">
+		<property name="assetPath">
+			<value>laser_loop.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>68.56507936507937</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ac667c7c-dad2-47e6-96f6-02354ebdb18e}</destination>
+		</relationship>
+	</object>
+</objects>

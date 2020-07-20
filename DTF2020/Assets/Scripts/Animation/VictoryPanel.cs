@@ -68,7 +68,7 @@ namespace DefaultNamespace
 
         public void OpenLvlMap()
         {
-            SceneManager.LoadScene("mainMenu");
+            SceneManager.LoadScene("mainMenu2");
         }
         
         public void Replay()

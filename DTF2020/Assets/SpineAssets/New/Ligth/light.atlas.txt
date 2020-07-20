@@ -1,0 +1,27 @@
+
+light.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+light_on_floor
+  rotate: false
+  xy: 2, 2
+  size: 360, 67
+  orig: 360, 67
+  offset: 0, 0
+  index: -1
+ray
+  rotate: true
+  xy: 2, 71
+  size: 176, 516
+  orig: 176, 516
+  offset: 0, 0
+  index: -1
+shadows_t
+  rotate: false
+  xy: 520, 75
+  size: 160, 172
+  orig: 160, 172
+  offset: 0, 0
+  index: -1

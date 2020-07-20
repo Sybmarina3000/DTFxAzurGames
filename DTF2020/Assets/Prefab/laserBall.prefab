@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 7028235083817758634}
   - component: {fileID: 3012219969793512998}
   - component: {fileID: 5708165151104341957}
+  - component: {fileID: 7503609673557453553}
+  - component: {fileID: 8398164838426847098}
+  - component: {fileID: 1916053422426627330}
   m_Layer: 0
   m_Name: laserBall
   m_TagString: Untagged
@@ -116,3 +119,46 @@ MonoBehaviour:
   _animationName: 
   loop: 1
   timeScale: 1
+--- !u!114 &7503609673557453553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038237947607709753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5f2796357f427a9d6730bbc16c2ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 6
+--- !u!114 &8398164838426847098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038237947607709753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c41f3cbb3f3f3f498bb9a9a06cb991b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dirAnimConfig: laser
+  dirAnimMixConfig: laserMix
+--- !u!58 &1916053422426627330
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038237947607709753}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.34, y: -1.3600001}
+  serializedVersion: 2
+  m_Radius: 0.98

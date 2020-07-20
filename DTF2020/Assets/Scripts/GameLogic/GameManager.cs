@@ -55,6 +55,7 @@ namespace DefaultNamespace
         public void OnWin()
         {
             FSM.SetNewState(GameState.Victory);
+            RealizeBox.instance.score.StopDecreaseScore();
         }
         
     }

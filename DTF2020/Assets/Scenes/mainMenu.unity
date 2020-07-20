@@ -907,6 +907,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 30483395}
+        m_MethodName: clickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &567346285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1019,6 +1030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 617778603}
   - component: {fileID: 617778604}
+  - component: {fileID: 617778605}
   m_Layer: 0
   m_Name: BluePanel
   m_TagString: Untagged
@@ -1064,6 +1076,23 @@ MonoBehaviour:
   _timeSwitchPanel: 0.3
   _panelPers: {fileID: 1124489358}
   _panelLvl: {fileID: 170564701}
+  triggerGlobalState: {fileID: 617778605}
+--- !u!114 &617778605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617778602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0e04e2572f9a940a47465f6f3c2f00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  parameter: game_state
+  TriggerEvent: 0
+  value: 1
 --- !u!4 &680709204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2515916199702568405, guid: bd87b20a2c7de49469458ce2f83ef72d,
@@ -1081,6 +1110,7 @@ GameObject:
   - component: {fileID: 914311034}
   - component: {fileID: 914311032}
   - component: {fileID: 914311033}
+  - component: {fileID: 914311035}
   m_Layer: 0
   m_Name: Main BlueCamera
   m_TagString: MainCamera
@@ -1153,6 +1183,19 @@ Transform:
   m_Father: {fileID: 617778603}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &914311035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914311031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: -1
 --- !u!1 &1034316995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,6 +1452,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 7c48d1ad54ca9e843b3355a2c362a254,
         type: 3}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 30483395}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: clickButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615780, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: nameLvl
+      value: level2
+      objectReference: {fileID: 0}
     - target: {fileID: 892149710443615782, guid: d8a761ced39abef4eb7791e595dd8277,
         type: 3}
       propertyPath: m_Name
@@ -1887,6 +1965,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478954472}
   m_CullTransparentMesh: 0
+--- !u!1 &1650254781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1650254783}
+  - component: {fileID: 1650254782}
+  m_Layer: 0
+  m_Name: audioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1650254782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650254781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/music
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
+--- !u!4 &1650254783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650254781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.161549, y: -3.61439, z: -73.910545}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1686144605 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 892149710443615783, guid: d8a761ced39abef4eb7791e595dd8277,
@@ -2243,6 +2375,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 97bc09d5fc78fbd4ea361700a1b3c355,
         type: 3}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 30483395}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: clickButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615780, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: nameLvl
+      value: level3
+      objectReference: {fileID: 0}
     - target: {fileID: 892149710443615782, guid: d8a761ced39abef4eb7791e595dd8277,
         type: 3}
       propertyPath: m_Name
@@ -2380,6 +2547,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 170564696}
     m_Modifications:
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 30483395}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: clickButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 892149710443615780, guid: d8a761ced39abef4eb7791e595dd8277,
+        type: 3}
+      propertyPath: nameLvl
+      value: level1
+      objectReference: {fileID: 0}
     - target: {fileID: 892149710443615782, guid: d8a761ced39abef4eb7791e595dd8277,
         type: 3}
       propertyPath: m_Name
@@ -2688,5 +2890,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugText: {fileID: 0}
   spineObject: {fileID: 1648126062716400104}
+  sirenObject: {fileID: 0}
   dirConfigAnim: player
   dirConfigAnimMix: playerMix
+  dirConfigAnimSiren: 
+  dirConfigAnimSirenMix: 
+  triggerSlouMoSound: {fileID: 0}
+  triggerGlobalState: {fileID: 0}

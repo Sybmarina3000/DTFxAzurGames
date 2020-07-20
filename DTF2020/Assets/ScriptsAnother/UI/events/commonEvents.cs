@@ -16,4 +16,9 @@ public class commonEvents : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void clickButton()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/menu_click", transform.position);
+    }
 }

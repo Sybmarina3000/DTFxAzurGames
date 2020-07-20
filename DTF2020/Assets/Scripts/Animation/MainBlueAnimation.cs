@@ -17,7 +17,9 @@ public class MainBlueAnimation : MonoBehaviour
     [SerializeField] private CanvasGroup _panelPers;
     [SerializeField] private CanvasGroup _panelLvl;
     private Sequence _animation;
-    
+
+    public FMODUnity.StudioGlobalParameterTrigger triggerGlobalState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +32,9 @@ public class MainBlueAnimation : MonoBehaviour
             .OnComplete( () => OnCompleteFirstAnimation());
 
         _animation.Play();
-//        _button.DOScale(1.0f, _timeButton);
+        triggerGlobalState.value = 1;
+        triggerGlobalState.TriggerParameters();
+        //        _button.DOScale(1.0f, _timeButton);
     }
     
 
