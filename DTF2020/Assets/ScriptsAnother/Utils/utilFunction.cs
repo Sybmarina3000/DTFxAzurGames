@@ -163,11 +163,11 @@ public class utilFunction
 
     static string loadFile(string nameConfig)
     {
-        if (!Directory.Exists("Assets/Settings/"))
+        if (!Directory.Exists(Application.streamingAssetsPath))
         {
-            Directory.CreateDirectory("Assets/Settings/");
+            return "";
         }
-        var dir = "Assets/Settings/" + nameConfig + ".json";
+        var dir = Path.Combine(Application.streamingAssetsPath, nameConfig + ".json");
         if (!File.Exists(dir))
         {
             return "";
@@ -197,11 +197,12 @@ public class utilFunction
 
     static protected void saveFile(string data, string nameFile)
     {
-        if (!Directory.Exists("Assets/Settings/"))
+        if (!Directory.Exists(Application.streamingAssetsPath))
         {
-            Directory.CreateDirectory("Assets/Settings/");
+            return; 
         }
-        File.WriteAllText("Assets/Settings/" + nameFile + ".json", data);
+        var dir = Path.Combine(Application.streamingAssetsPath, nameFile + ".json");
+        File.WriteAllText(dir, data);
     }
 
 
