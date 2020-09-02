@@ -1,0 +1,14 @@
+{
+    "Items": [
+        {
+            "animFrom": "loop",
+            "animTo": "warning",
+            "time": 0.1
+        },
+        {
+            "animFrom": "warning",
+            "animTo": "loop",
+            "time": 0.1
+        }                
+    ]
+}
