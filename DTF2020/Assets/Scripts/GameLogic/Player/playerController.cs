@@ -62,8 +62,8 @@ public class playerController : MonoBehaviour, actionObject
     // Update is called once per frame
     void Update()
     {
-        animModule.customUpdate();
-        animSirenModule.customUpdate();
+      //  animModule.customUpdate();
+     //   animSirenModule.customUpdate();
         if (Input.GetKeyDown(KeyCode.F3))
         {
             slowMode = !slowMode;
