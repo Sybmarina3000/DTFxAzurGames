@@ -83,10 +83,10 @@ public class playerController : MonoBehaviour, actionObject
         }
         if (slowMode)
         {
-            float slowSpeed = 0.02f;
+            float slowSpeed = DefaultNamespace.RealizeBox.instance.manager.database.coefSlow;
             if (Time.timeScale > slowSpeed)
             {
-                Time.timeScale -= Time.fixedDeltaTime * 20;
+                Time.timeScale -= Time.fixedDeltaTime * DefaultNamespace.RealizeBox.instance.manager.database.speedSlowModeOn;
                 Time.fixedDeltaTime = Time.fixedDeltaTime = Time.timeScale * .02f;
             }
             else
@@ -104,8 +104,7 @@ public class playerController : MonoBehaviour, actionObject
 
     void setNormalTime()
     {
-       // Debug.Log("coefNorm " + DefaultNamespace.RealizeBox.instance.manager.database.coefNormal);
-        float normalSpeed = 1;
+        float normalSpeed = DefaultNamespace.RealizeBox.instance.manager.database.coefNormal;
         Time.timeScale = normalSpeed;
         Time.fixedDeltaTime = Time.timeScale * .02f;
         debugText.text = Time.timeScale.ToString();
@@ -126,14 +125,13 @@ public class playerController : MonoBehaviour, actionObject
         if (ground)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/jump_2", transform.position);
-            moveController.AddForce(new Vector2(direction.x * 1200, direction.y * 1200));
+            moveController.AddForce(new Vector2(direction.x * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpGround, direction.y * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpGround));
         }
         else
         { 
-          //  DefaultNamespace.RealizeBox.instance.manager.database.powerJumpFly == 1800
-            moveController.AddForce(new Vector2 (direction.x * 1800, direction.y * 1800));
+            moveController.AddForce(new Vector2 (direction.x * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpFly, direction.y * DefaultNamespace.RealizeBox.instance.manager.database.powerJumpFly));
         }
-          animModule.setMove();
+        animModule.setMove();
     }
 
     public void initActionObject()
@@ -158,7 +156,6 @@ public class playerController : MonoBehaviour, actionObject
         {
             _isFirstCollision = false;
             onSpawnInScene?.Invoke();
-            moveController.AddForce(new Vector2(0 * 1200, 1 * 1200));
         }
         animModule.setIdle();
         // надо добавить задержку, чтобы он стартовал не сразу
@@ -177,8 +174,7 @@ public class playerController : MonoBehaviour, actionObject
         actionController.clearActions(gameObject);
         setNormalTime();
 
-        // DefaultNamespace.RealizeBox.instance.manager.database.timeBeforeNewSlowMode == 0.5
-        actionController.addDelay(gameObject, 0.5f - 0.25f, new callback(new callbackFunc(animModule.setRandom)));
+        actionController.addDelay(gameObject, DefaultNamespace.RealizeBox.instance.manager.database.timeBeforeNewSlowMode - 0.25f, new callback(new callbackFunc(animModule.setRandom)));
         actionController.addDelay(gameObject, 0.25f, new callback(new callbackFunc(startSlowMode)));
         Debug.Log("jumpNext");
     }
@@ -190,7 +186,7 @@ public class playerController : MonoBehaviour, actionObject
         DefaultNamespace.RealizeBox.instance.touchController.startJump();
         var secondCallback = new callback<bool>(new callbackFunc<bool>(setSlowMode), false);
         var firstCallback = new callback(new callbackFunc(DefaultNamespace.RealizeBox.instance.touchController.endJump), secondCallback);
-        actionController.addDelay(gameObject, 3, firstCallback);
+        actionController.addDelay(gameObject, DefaultNamespace.RealizeBox.instance.manager.database.timeSlowMode, firstCallback);
         triggerSlouMoSound.value = 1;
         triggerSlouMoSound.TriggerParameters();
     }

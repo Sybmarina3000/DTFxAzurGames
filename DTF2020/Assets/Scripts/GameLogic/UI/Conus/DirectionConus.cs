@@ -119,7 +119,7 @@ namespace DefaultNamespace
                         gran = currentAngle * (-1);
                 }
                 
-                var angle = gran + (_radius / _timeOneRound) * (Time.deltaTime / Time.timeScale * 3.5f) * direction;
+                var angle = gran + (_radius / _timeOneRound) * (Time.deltaTime / Time.timeScale * DefaultNamespace.RealizeBox.instance.manager.database.speedConus) * direction;
                 _arrow.Rotate( Vector3.back, angle);
                 
                 currentAngle += angle;
