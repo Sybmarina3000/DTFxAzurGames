@@ -31,7 +31,7 @@ namespace DefaultNamespace
 
         private void Start()
         {
-            Invoke( nameof(LateStart), 1.0f);
+        //    Invoke( nameof(LateStart), 1.0f);
             database = utilFunction.loadData<configs>(configName);
         }
 
