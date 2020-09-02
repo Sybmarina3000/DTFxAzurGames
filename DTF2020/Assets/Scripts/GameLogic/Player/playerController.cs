@@ -28,13 +28,8 @@ public class playerController : MonoBehaviour, actionObject
     // Start is called before the first frame update
     void Start()
     {
-      // Invoke( "startPlay", 1.0f);
-        //trigger.SendMessage("game_state", 2);
-    }
-
-    public void OnEnable()
-    {
         startPlay();
+        //trigger.SendMessage("game_state", 2);
     }
 
     public void startPlay()
@@ -43,15 +38,15 @@ public class playerController : MonoBehaviour, actionObject
         initActionObject();
         colliderFactory.getCollideFromParameters("box", new List<float> { -0.04939353f, 0.06585872f, 1.332784f, 2.155998f }, false, gameObject);
         moveController = GetComponent<Rigidbody2D>();
-       animModule = new animController();
-       animSirenModule = new animController();
-       animModule.init(spineObject, dirConfigAnim, dirConfigAnimMix);
-       animModule.setIdle();
-       animSirenModule.init(sirenObject, dirConfigAnimSiren, dirConfigAnimSirenMix);
+        animModule = new animController();
+        animSirenModule = new animController();
+        animModule.init(spineObject, dirConfigAnim, dirConfigAnimMix);
+        animModule.setIdle();
+        animSirenModule.init(sirenObject, dirConfigAnimSiren, dirConfigAnimSirenMix);
         Physics2D.autoSimulation = true;
-       triggerGlobalState.value = 2;
-       triggerGlobalState.TriggerParameters();
-       DefaultNamespace.RealizeBox.instance.score.StartDecreaseScore();
+        triggerGlobalState.value = 2;
+        triggerGlobalState.TriggerParameters();
+        DefaultNamespace.RealizeBox.instance.score.StartDecreaseScore();
     }
 
     //~playerController()
@@ -62,8 +57,8 @@ public class playerController : MonoBehaviour, actionObject
     // Update is called once per frame
     void Update()
     {
-      //  animModule.customUpdate();
-     //   animSirenModule.customUpdate();
+        animModule.customUpdate();
+        animSirenModule.customUpdate();
         if (Input.GetKeyDown(KeyCode.F3))
         {
             slowMode = !slowMode;
@@ -98,7 +93,7 @@ public class playerController : MonoBehaviour, actionObject
         }
         else
         {
-         setNormalTime();
+            setNormalTime();
         }
     }
 

@@ -163,7 +163,15 @@ public class utilFunction
 
     static string loadFile(string nameConfig)
     {
+        if (!Directory.Exists(Application.streamingAssetsPath))
+        {
+            return "";
+        }
         var dir = Path.Combine(Application.streamingAssetsPath, nameConfig + ".json");
+        if (!File.Exists(dir))
+        {
+            return "";
+        }
         return File.ReadAllText(dir);
     }
 
@@ -189,6 +197,10 @@ public class utilFunction
 
     static protected void saveFile(string data, string nameFile)
     {
+        if (!Directory.Exists(Application.streamingAssetsPath))
+        {
+            return; 
+        }
         var dir = Path.Combine(Application.streamingAssetsPath, nameFile + ".json");
         File.WriteAllText(dir, data);
     }

@@ -1452,21 +1452,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 7c48d1ad54ca9e843b3355a2c362a254,
         type: 3}
-    - target: {fileID: 892149709746077653, guid: d8a761ced39abef4eb7791e595dd8277,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 892149709779990865, guid: d8a761ced39abef4eb7791e595dd8277,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 892149710213470409, guid: d8a761ced39abef4eb7791e595dd8277,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2390,21 +2375,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 97bc09d5fc78fbd4ea361700a1b3c355,
         type: 3}
-    - target: {fileID: 892149709746077653, guid: d8a761ced39abef4eb7791e595dd8277,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 892149709779990865, guid: d8a761ced39abef4eb7791e595dd8277,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 892149710213470409, guid: d8a761ced39abef4eb7791e595dd8277,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2577,21 +2547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 170564696}
     m_Modifications:
-    - target: {fileID: 892149709746077653, guid: d8a761ced39abef4eb7791e595dd8277,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 892149709779990865, guid: d8a761ced39abef4eb7791e595dd8277,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 892149710213470409, guid: d8a761ced39abef4eb7791e595dd8277,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 892149710443615771, guid: d8a761ced39abef4eb7791e595dd8277,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

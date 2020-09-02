@@ -18,14 +18,14 @@ namespace DefaultNamespace
         private playerController _player;
         private void Start()
         {
-            _player = RealizeBox.instance.player;
-            _player.onSpawnInScene += CloseAnimation;
+            //_player = RealizeBox.instance.player;
+            //_player.onSpawnInScene += CloseAnimation;
         }
 
         public void StartAnimation()
         {
-            _firstPoint.SetActive(true);
-            StartCoroutine("Animation");
+            // _firstPoint.SetActive(true);
+           // StartCoroutine("Animation");
         }
         
         private IEnumerator Animation()
@@ -39,14 +39,12 @@ namespace DefaultNamespace
             yield return new WaitForSeconds(_returnTime);
             _player.gameObject.SetActive(true);
             yield break;
-            
-            //CloseAnimation();
         }
 
         private void CloseAnimation()
         {
-            _firstPoint.SetActive(false);
-            _gameCamera.SetActive(true);
+            //_firstPoint.SetActive(false);
+            //_gameCamera.SetActive(true);
         }
         
         
