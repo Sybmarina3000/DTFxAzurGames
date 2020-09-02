@@ -163,16 +163,20 @@ public class utilFunction
 
     static string loadFile(string nameConfig)
     {
-        if (!Directory.Exists(Application.streamingAssetsPath))
+        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, nameConfig + ".json");
+        string result = "";
+        if (filePath.Contains("://"))
         {
-            return "";
+            WWW www = new WWW(filePath);
+            while (!www.isDone)
+            {
+            }
+            result = www.text;
         }
-        var dir = Path.Combine(Application.streamingAssetsPath, nameConfig + ".json");
-        if (!File.Exists(dir))
-        {
-            return "";
+        else { 
+            result = System.IO.File.ReadAllText(filePath);
         }
-        return File.ReadAllText(dir);
+        return result;
     }
 
     static public T[] loadArrayData<T>(string config)
@@ -197,10 +201,6 @@ public class utilFunction
 
     static protected void saveFile(string data, string nameFile)
     {
-        if (!Directory.Exists(Application.streamingAssetsPath))
-        {
-            return; 
-        }
         var dir = Path.Combine(Application.streamingAssetsPath, nameFile + ".json");
         File.WriteAllText(dir, data);
     }

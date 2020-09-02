@@ -28,6 +28,7 @@ public class playerController : MonoBehaviour, actionObject
     // Start is called before the first frame update
     void Start()
     {
+        //Application.targetFrameRate = 60;
         startPlay();
         //trigger.SendMessage("game_state", 2);
     }
