@@ -6,7 +6,7 @@ namespace DefaultNamespace
     {
         public static int currentSessionLvl = 0;
         public static int currentStars;
-        
+
         public static int GetCurrentLevel()
         {
             if (PlayerPrefs.HasKey("currentLvl") == false)
@@ -36,18 +36,20 @@ namespace DefaultNamespace
                 return PlayerPrefs.GetInt("star" + lvl);
             }
         }
-        
+
         public static void SaveCurrentLevelProgress()
         {
             if (PlayerPrefs.HasKey("currentLvl") == false)
             {
-                PlayerPrefs.SetInt("currentLvl", currentSessionLvl+ 1);
-                PlayerPrefs.SetInt("star" + currentSessionLvl, currentStars);
-                Debug.Log("Save lvl & stars");
+                PlayerPrefs.SetInt("currentLvl", 1);
+                /*PlayerPrefs.SetInt("star" + currentSessionLvl, currentStars);
+                Debug.Log("Save lvl & stars");*/
             }
             else
             {
                 var saveLvl = PlayerPrefs.GetInt("currentLvl");
+                PlayerPrefs.SetInt("currentLvl", saveLvl + 1);
+/*                var saveLvl = PlayerPrefs.GetInt("currentLvl");
 
                 if (saveLvl < currentSessionLvl + 1)
                 {
@@ -57,9 +59,9 @@ namespace DefaultNamespace
                 }
                 else
                 {
-                    if(currentStars > PlayerPrefs.GetInt("star" + currentSessionLvl))
-                        PlayerPrefs.SetInt("star" + currentSessionLvl, currentStars);  
-                }
+                    if (currentStars > PlayerPrefs.GetInt("star" + currentSessionLvl))
+                        PlayerPrefs.SetInt("star" + currentSessionLvl, currentStars);
+                }*/
             }
         }
     }
