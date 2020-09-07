@@ -26,6 +26,7 @@ public class StartGame : MonoBehaviour
     // Update is called once per frame
     public void StartPlay()
     {
-        SceneManager.LoadScene("level" + ((currentLvl % 4) + 1)); 
+        AppMetrica.Instance.ReportEvent("level_start", new System.Collections.Generic.Dictionary<string, object> {{ "level", currentLvl }});
+        SceneManager.LoadScene("level" + ((currentLvl % 13) + 1)); 
     }
 }

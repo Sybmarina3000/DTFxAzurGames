@@ -56,6 +56,7 @@ namespace DefaultNamespace
         {
             FSM.SetNewState(GameState.Victory);
             RealizeBox.instance.score.StopDecreaseScore();
+            AppMetrica.Instance.ReportEvent("level_start", new System.Collections.Generic.Dictionary<string, object> { { "level", 0 }, {"result", "win"}, {"time", 60 - RealizeBox.instance.score.currentScore}});
         }
         
     }

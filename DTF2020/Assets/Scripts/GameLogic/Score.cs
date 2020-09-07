@@ -37,8 +37,10 @@ public class Score : MonoBehaviour
     {
         if (_stop)
             return;
-        if ((_currentScore - amount) < 0)
+        if ((_currentScore - amount) < 0) {
+            AppMetrica.Instance.ReportEvent("level_start", new System.Collections.Generic.Dictionary<string, object> { { "level", 0 }, { "result", "lose" }, { "time", 60 - currentScore } });
             StopDecreaseScore();
+        }
             
         _currentScore = (_currentScore - amount) < 0 ? 0 : (_currentScore - amount);
         
