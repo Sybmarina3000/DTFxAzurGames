@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DefaultNamespace;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum ScoreDecreaseType 
@@ -38,7 +40,17 @@ public class Score : MonoBehaviour
         if (_stop)
             return;
         if ((_currentScore - amount) < 0) {
-            AppMetrica.Instance.ReportEvent("level_start", new System.Collections.Generic.Dictionary<string, object> { { "level", 0 }, { "result", "lose" }, { "time", 60 - currentScore } });
+            var level = PlayerPrefs.GetInt("currentLvl");
+
+            AppMetrica.Instance.ReportEvent("level_start", new System.Collections.Generic.Dictionary<string, object> { { "level", level.ToString() }, { "result", "lose" }, { "time", 60 - currentScore } });
+
+            var tutParams = new Dictionary<string, object>();
+            tutParams["level"] = level.ToString();
+            tutParams["result"] = "lose";
+            tutParams["time"] = 60 - currentScore;
+
+            //FB.LogAppEvent("level_start", parameters: tutParams);
+
             StopDecreaseScore();
         }
             
