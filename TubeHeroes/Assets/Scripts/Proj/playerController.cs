@@ -5,9 +5,17 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     objectWithLiquid lockTube = null;
-    GameObject movementSlot = null;
+    static public GameObject movementSlot = null;
     SpriteRenderer targetSprite = null;
     public bool cheatMode = false;
+    static public Vector3 mousePosition = Vector3.zero;
+    static public Vector3 startMousePosition = Vector3.zero;
+    static public Vector3 startObjectPosition = Vector3.zero;
+    static public bool interactionMouse = false;
+
+    public bool debug = false;
+    public GameObject debugSaveSlot = null;
+    public GameObject debugMoveSlot = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,101 +25,119 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (debug)
+        {
+            if (debugSaveSlot && debugMoveSlot)
+            {
+                debugMoveSlot.transform.position = debugSaveSlot.transform.position;
+                debugMoveSlot.transform.localRotation = debugSaveSlot.transform.localRotation;
+            }
+        }
         if (lockTube && movementSlot)
         {
             var objectTybe = lockTube as dynamicTube;
-            float d = 999;
+            float x0 = -10;
+            float x1 = 10;
+            float y0 = -10;
+            float y1 = 10;
+            Vector3 startPos = Vector3.zero;
+            Quaternion startRotation = new Quaternion(0, 0, 0, 0);
             if (objectTybe)
             {
-                d = objectTybe.d;
+                x0 = objectTybe.x0;
+                x1 = objectTybe.x1;
+                y0 = objectTybe.y0;
+                y1 = objectTybe.y1;
+                startPos = objectTybe.startPosEnd;
+                startRotation = objectTybe.startRotationEnd;
             }
             var result = utilFunction.getTargetInCollider<Collider2D>(movementSlot.GetComponent<Collider2D>(), null);
             objectWithLiquid objectConnect = null;
             bool goodConnect = false;
             GameObject slotConnect = null;
-            if (result.Count > 0)
+            foreach (var elementResult in result)
             {
-                slotConnect = result[0].gameObject;
-                if (slotConnect == movementSlot)
+                if (result.Count > 0)
                 {
-                    slotConnect = null;
+                    slotConnect = elementResult.gameObject;
+                    if (slotConnect == movementSlot)
+                    {
+                        slotConnect = null;
+                    }
+                    else
+                    {
+                        objectConnect = slotConnect.GetComponentInParent<objectWithLiquid>();
+                    }
+                }
+                if (slotConnect == null && targetSprite)
+                {
+                    targetSprite.color = new Color(255, 255, 255);
+                    targetSprite = null;
+                }
+                if (objectConnect)
+                {
+                    goodConnect = !objectConnect.isOutSlot(slotConnect) && objectConnect.isValidSlot(movementSlot) && !objectConnect.isValidSlot(slotConnect) && objectConnect.isEmptySlot(slotConnect);
+                    if (goodConnect)
+                    {
+                        if (slotConnect)
+                        {
+                            targetSprite = slotConnect.GetComponentInChildren<SpriteRenderer>();
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        slotConnect = null;
+                        objectConnect = null;
+                    }
                 }
                 else
                 {
-                    objectConnect = slotConnect.GetComponentInParent<objectWithLiquid>();
+                    slotConnect = null;
+                    objectConnect = null;
                 }
             }
-            if (slotConnect == null && targetSprite)
-            {
-                targetSprite.color = new Color(255, 255, 255);
-                targetSprite = null;
-            }
-            if (objectConnect)
-            {
-                goodConnect = !objectConnect.isOutSlot(slotConnect) && objectConnect.isValidSlot(movementSlot);
-                if (goodConnect)
-                {
-                    if (slotConnect)
-                    {
-                        targetSprite = slotConnect.GetComponentInChildren<SpriteRenderer>();
-                    }
-                }
-            }
+
             if (targetSprite)
             {
                 targetSprite.color = new Color(0, 255, 255);
             }
-            if (Input.GetMouseButtonUp(0))
+            if (isInteractionEnd())
             {
                 if (goodConnect)
                 {
                     objectConnect.connectObject(lockTube, slotConnect);
                     lockTube.connectObject(objectConnect, movementSlot);
+                    movementSlot.transform.position = slotConnect.transform.position;
+                    movementSlot.transform.localRotation = slotConnect.transform.localRotation;
                 }
-                if (movementSlot)
+                else if(movementSlot)
                 {
-                    movementSlot.transform.localPosition = Vector3.zero;
+                    movementSlot.transform.position = startPos;
+                    movementSlot.transform.rotation = startRotation;
                 }
-
                 if (targetSprite)
                 {
                     targetSprite.color = new Color(255, 255, 255);
                 }
+                if (debug)
+                {
+                    debugSaveSlot = slotConnect;
+                    debugMoveSlot = movementSlot;
+                }
                 targetSprite = null;
                 lockTube = null;
                 movementSlot = null;
+                mousePosition = Vector3.zero;
+                startObjectPosition = Vector3.zero;
+                startMousePosition = Vector3.zero;
+                interactionMouse = false;
                 return;
             }
-            var position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            movementSlot.transform.position = position;
-            var localPosition = movementSlot.transform.localPosition;
-            localPosition.z = 0;
-            if (localPosition.x > d)
-            {
-                localPosition.x = d;
-            }
-            if (localPosition.y > d)
-            {
-                localPosition.y = d;
-            }
-            if (localPosition.x < -d)
-            {
-                localPosition.x = -d;
-            }
-            if (localPosition.y < -d)
-            {
-                localPosition.y = -d;
-            }
-
-            movementSlot.transform.localPosition = localPosition;
-
+            checkMousePoseAndMoveTube(x0, y0, x1, y1);
             return;
         }
-        if (Input.touchCount == 1)
-        {
-
-        }
-        else if (Input.GetMouseButtonDown(0))
+        if (isInteractionStart())
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
@@ -131,7 +157,7 @@ public class playerController : MonoBehaviour
             bool endSearch = false;
             foreach (var liquidObject in result)
             {
-                if (endSearch) 
+                if (endSearch)
                 {
                     break;
                 }
@@ -155,7 +181,7 @@ public class playerController : MonoBehaviour
                         }
                     }
                 }
-                else 
+                else
                 {
                     if (slotsForMove == null)
                     {
@@ -173,7 +199,6 @@ public class playerController : MonoBehaviour
                         }
                     }
                 }
-
             }
         }
     }
@@ -190,5 +215,96 @@ public class playerController : MonoBehaviour
             }
         }
         
+    }
+
+
+    void checkMousePoseAndMoveTube(float x0, float y0, float x1, float y1)
+    {
+        if (!interactionMouse)
+        {
+            startMousePosition = Camera.main.ScreenToWorldPoint(getInteractionPosition());
+            startObjectPosition = movementSlot.transform.localPosition;
+            interactionMouse = true;
+        }
+        var realMousePos = Camera.main.ScreenToWorldPoint(getInteractionPosition());
+        mousePosition = realMousePos - startMousePosition;
+        var localPosition = startObjectPosition + mousePosition;
+        localPosition.z = 0;
+        if (localPosition.x < x0)
+        {
+            localPosition.x = x0;
+        }
+        if (localPosition.y < y0)
+        {
+            localPosition.y = y0;
+        }
+        if (localPosition.x > x1)
+        {
+            localPosition.x = x1;
+        }
+        if (localPosition.y > y1)
+        {
+            localPosition.y = y1;
+        }
+
+        movementSlot.transform.localPosition = localPosition;
+
+        var targetRotation = realMousePos - lockTube.transform.position;
+
+        var rotator = Quaternion.LookRotation(new Vector3(0,0,1), Quaternion.Euler(0, 0, 180) * targetRotation);
+
+        movementSlot.transform.rotation = rotator;
+        var obj = lockTube as dynamicTube;
+        if (obj)
+        {
+            var ropeObject = obj.rope;
+            var ropeComponent = ropeObject.GetComponent<Obi.ObiRopeExtrudedRenderer>();
+            if (ropeComponent)
+            { 
+                ropeComponent.uvScale.y = 0.4f + (Mathf.Abs(localPosition.x) + Mathf.Abs(localPosition.y)) / 16;
+            }
+        }
+    }
+
+    Vector3 getInteractionPosition()
+    {
+        Vector3 result = Vector3.zero;
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            result = Input.touches[0].position;
+        }
+        else
+        {
+            result = Input.mousePosition;
+        }
+        return result;
+    }
+
+    bool isInteractionStart()
+    {
+        bool result = false;
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            result = (Input.touchCount > 0);
+        }
+        else
+        {
+            result = Input.GetMouseButtonDown(0);
+        }
+        return result;
+    }
+
+    bool isInteractionEnd()
+    {
+        bool result = false;
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            result = (Input.touchCount == 0);
+        }
+        else
+        {
+            result = Input.GetMouseButtonUp(0);
+        }
+        return result;
     }
 }

@@ -40,7 +40,16 @@ public class reservour : objectWithLiquid
 
     private void Update()
     {
-        if (volumeLiquid <= 0.0f)
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            volumeLiquid = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            volumeLiquid = 0;
+        }
+
+        if (volumeLiquid <= float.Epsilon || volumeLiquid < 0.0f)
         {
             return;
         }

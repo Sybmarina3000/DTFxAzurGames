@@ -22,7 +22,10 @@ public class objectWithLiquid : MonoBehaviour
         {
             if (child.gameObject.GetComponent<Collider2D>())
             {
-                slots.Add(child.gameObject, null);
+                if (!slots.ContainsKey(child.gameObject))
+                {
+                    slots[child.gameObject] = null;
+                }
             }
         }
     }
@@ -70,6 +73,11 @@ public class objectWithLiquid : MonoBehaviour
     }
 
     public virtual bool isOutSlot(GameObject slot)
+    {
+        return false;
+    }
+
+    public virtual bool isEmptySlot(GameObject slot)
     {
         return false;
     }

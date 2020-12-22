@@ -1,4 +1,5 @@
-﻿using RotaryHeart.Lib.SerializableDictionary;
+﻿using Obi;
+using RotaryHeart.Lib.SerializableDictionary;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,18 @@ using UnityEngine;
 public class tube : objectWithLiquid
 {
     public List<GameObject> outSlots = new List<GameObject>();
+    public GameObject end = null;
+    public GameObject liquidObject = null;
+    public float countLiquid = 0.0f;
+    bool needOut = false;
+    public liquid currentLiquid = new liquid();
+    float dtLiquid = 0;
+    bool needReloadLiquid = false;
+    public float needParticle = 0.0f;
+
+    public bool debugWater = false;
+    public bool debugPoison = false;
+    liquid debugLiquid = new liquid();
 
     void Start()
     {
@@ -14,9 +27,121 @@ public class tube : objectWithLiquid
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        
+
+        if (countLiquid > 0)
+        {
+            dtLiquid += Time.deltaTime;
+        }
+        if (countLiquid < float.Epsilon)
+        {
+            countLiquid = 0.0f;
+        }
+        if (dtLiquid > 0.5f && countLiquid > 0.01f)
+        {
+            dtLiquid = 0;
+
+            bool goodConnect = false;
+            int countOutSlots = outSlots.Count + 1;
+            foreach (var slot in outSlots)
+            {
+                var volumeForCurrentSlot = countLiquid / countOutSlots;
+                if (slots.ContainsKey(slot))
+                {
+                    var target = slots[slot];
+                    if (target)
+                    {
+                        var remainder = target.proceedLiquid(currentLiquid, volumeForCurrentSlot);
+                        volumeForCurrentSlot = volumeForCurrentSlot - remainder;
+                        countLiquid = countLiquid - volumeForCurrentSlot;
+                        countOutSlots--;
+                        goodConnect = true;
+                    }
+                }
+            }
+            if (goodConnect)
+            {
+                needOut = false;
+                if (needParticle > currentLiquid.getCountActiveParticle())
+                {
+                    int countNeed = (int)needParticle - currentLiquid.getCountActiveParticle();
+                    countLiquid += countNeed / worldSettings.particleToLiquid;
+                    needParticle = currentLiquid.getCountActiveParticle();
+                }
+                return;
+            }
+            else
+            {
+                needOut = true;
+            }
+            
+        }
+        if (countLiquid > 0.0f && needOut)
+        {
+            needParticle += worldSettings.speedLiquid * worldSettings.particleToLiquid * Time.deltaTime;
+            countLiquid -= worldSettings.speedLiquid * Time.deltaTime;
+        }
+
+        if (slots[end] == null && (debugWater || debugPoison))
+        {
+            cheatsAction();
+        }
+        if (needParticle > currentLiquid.getCountActiveParticle())
+        {
+            if (!currentLiquid.isStart())
+            {
+                currentLiquid.outStart(liquidObject);
+            }
+            else if (currentLiquid.getSpeedOut() == 0)
+            {
+                currentLiquid.setSpeedOut(worldSettings.speedLiquidEmmiters);
+            }
+        }
+        else
+        {
+            if (currentLiquid.isStart())
+            {
+                currentLiquid.setSpeedOut(0);
+            }
+        }
+        if (needReloadLiquid && currentLiquid.isStart() && needParticle > 0)
+        {
+            currentLiquid.outStart(liquidObject);
+            needReloadLiquid = false;
+        }
+    }
+
+    void cheatsAction()
+    {
+        if (debugWater && debugLiquid.currentType != liquid.typeLiquid.water)
+        {
+            debugLiquid.outStop();
+            debugLiquid.currentType = liquid.typeLiquid.water;
+            debugLiquid.outStart(liquidObject);
+        }
+        else if (debugPoison && debugLiquid.currentType != liquid.typeLiquid.poison)
+        {
+            debugLiquid.outStop();
+            debugLiquid.currentType = liquid.typeLiquid.poison;
+            debugLiquid.outStart(liquidObject);
+        }
+        else if (debugLiquid.currentType != liquid.typeLiquid.empty && !debugWater && !debugPoison)
+        {
+            debugLiquid.outStop();
+            debugLiquid.currentType = liquid.typeLiquid.empty;
+        }
+        else
+        {
+            if (!debugLiquid.isStart())
+            {
+                return;
+            }
+            if (debugLiquid.getCountActiveParticle() > currentLiquid.getCountActiveParticle())
+            {
+                debugLiquid.setSpeedOut(0);
+            }
+        }
     }
 
     public override float proceedLiquid(liquid objectLiquid, float count)
@@ -25,30 +150,33 @@ public class tube : objectWithLiquid
         {
             return 0.0f;
         }
-        int countOutSlots = outSlots.Count + 1;
 
-        foreach (var slot in outSlots)
+        if (count > worldSettings.speedLiquid)
         {
-            var volumeForCurrentSlot = count / countOutSlots;
-            if (slots.ContainsKey(slot))
-            {
-                var target = slots[slot];
-                var remainder = target.proceedLiquid(objectLiquid, volumeForCurrentSlot);
-                volumeForCurrentSlot -= remainder;
-                count -= volumeForCurrentSlot;
-                countOutSlots--;
-            }
-            else
-            {
-                count -= volumeForCurrentSlot;
-                countOutSlots--;
-            }
+            countLiquid += worldSettings.speedLiquid;
+            count -= worldSettings.speedLiquid;
         }
+        else
+        {
+            countLiquid += count;
+            count = 0;
+        }
+        currentLiquid.mix(objectLiquid);
         return count;
     }
 
     public override bool isOutSlot(GameObject slot)
     {
         return outSlots.Contains(slot);
+    }
+
+    public override bool isEmptySlot(GameObject slot)
+    {
+        bool result = false;
+        if (slots.ContainsKey(slot))
+        {
+            result = slots[slot] == null;
+        }
+        return result;
     }
 }
