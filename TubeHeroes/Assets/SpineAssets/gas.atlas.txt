@@ -1,0 +1,13 @@
+
+gas.png
+size: 64,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+smoke
+  rotate: false
+  xy: 2, 2
+  size: 42, 50
+  orig: 42, 50
+  offset: 0, 0
+  index: -1

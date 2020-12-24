@@ -4,6 +4,5 @@ using UnityEngine;
 
 public static class worldSettings {
     public static float speedLiquid = 0.2f;
-    public static float particleToLiquid = 100.0f;
-    public static int speedLiquidEmmiters = 10;
+    public static int speedLiquidEmmiters = 5;
 }

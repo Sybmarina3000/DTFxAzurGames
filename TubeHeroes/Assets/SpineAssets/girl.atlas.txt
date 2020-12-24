@@ -1,0 +1,62 @@
+
+girl.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+girl
+  rotate: false
+  xy: 147, 93
+  size: 151, 161
+  orig: 151, 161
+  offset: 0, 0
+  index: -1
+h1
+  rotate: false
+  xy: 242, 9
+  size: 74, 82
+  orig: 74, 82
+  offset: 0, 0
+  index: -1
+h2
+  rotate: false
+  xy: 2, 76
+  size: 143, 178
+  orig: 143, 178
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 147, 9
+  size: 82, 93
+  orig: 82, 93
+  offset: 0, 0
+  index: -1
+hend1
+  rotate: false
+  xy: 2, 2
+  size: 54, 72
+  orig: 54, 72
+  offset: 0, 0
+  index: -1
+hend2-2
+  rotate: false
+  xy: 87, 34
+  size: 31, 40
+  orig: 31, 40
+  offset: 0, 0
+  index: -1
+hend2_1
+  rotate: false
+  xy: 58, 27
+  size: 27, 47
+  orig: 27, 47
+  offset: 0, 0
+  index: -1
+hh
+  rotate: true
+  xy: 58, 7
+  size: 18, 26
+  orig: 18, 26
+  offset: 0, 0
+  index: -1

@@ -15,7 +15,7 @@ public class tube : objectWithLiquid
     public liquid currentLiquid = new liquid();
     float dtLiquid = 0;
     bool needReloadLiquid = false;
-    public float needParticle = 0.0f;
+    public bool lockOut = false;
 
     public bool debugWater = false;
     public bool debugPoison = false;
@@ -29,7 +29,10 @@ public class tube : objectWithLiquid
     // Update is called once per frame
     protected void Update()
     {
-
+        if (lockOut)
+        {
+            return;
+        }
         if (countLiquid > 0)
         {
             dtLiquid += Time.deltaTime;
@@ -63,12 +66,6 @@ public class tube : objectWithLiquid
             if (goodConnect)
             {
                 needOut = false;
-                if (needParticle > currentLiquid.getCountActiveParticle())
-                {
-                    int countNeed = (int)needParticle - currentLiquid.getCountActiveParticle();
-                    countLiquid += countNeed / worldSettings.particleToLiquid;
-                    needParticle = currentLiquid.getCountActiveParticle();
-                }
                 return;
             }
             else
@@ -77,18 +74,9 @@ public class tube : objectWithLiquid
             }
             
         }
-        if (countLiquid > 0.0f && needOut)
+        if (countLiquid > 0.01f && needOut)
         {
-            needParticle += worldSettings.speedLiquid * worldSettings.particleToLiquid * Time.deltaTime;
             countLiquid -= worldSettings.speedLiquid * Time.deltaTime;
-        }
-
-        if (slots[end] == null && (debugWater || debugPoison))
-        {
-            cheatsAction();
-        }
-        if (needParticle > currentLiquid.getCountActiveParticle())
-        {
             if (!currentLiquid.isStart())
             {
                 currentLiquid.outStart(liquidObject);
@@ -96,6 +84,11 @@ public class tube : objectWithLiquid
             else if (currentLiquid.getSpeedOut() == 0)
             {
                 currentLiquid.setSpeedOut(worldSettings.speedLiquidEmmiters);
+            }
+            if (needReloadLiquid && currentLiquid.isStart())
+            {
+                currentLiquid.outStart(liquidObject);
+                needReloadLiquid = false;
             }
         }
         else
@@ -105,10 +98,11 @@ public class tube : objectWithLiquid
                 currentLiquid.setSpeedOut(0);
             }
         }
-        if (needReloadLiquid && currentLiquid.isStart() && needParticle > 0)
+
+
+        if (slots[end] == null && (debugWater || debugPoison))
         {
-            currentLiquid.outStart(liquidObject);
-            needReloadLiquid = false;
+            cheatsAction();
         }
     }
 
